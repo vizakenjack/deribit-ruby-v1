@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://test.deribit.com/api/v1/public/index
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.10.3
+      Date:
+      - Thu, 18 Oct 2018 14:12:23 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '142'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"usOut":1539871943430992,"usIn":1539871943430975,"usDiff":17,"testnet":true,"success":true,"result":{"btc":6435.9,"edp":6435.9},"message":""}'
+    http_version: 
+  recorded_at: Thu, 18 Oct 2018 14:12:23 GMT
+recorded_with: VCR 4.0.0

@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://test.deribit.com/api/v1/public/getcurrencies
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.10.3
+      Date:
+      - Thu, 18 Oct 2018 14:13:36 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '250'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"usOut":1539872016313498,"usIn":1539872016313497,"usDiff":1,"testnet":true,"success":true,"result":[{"currency":"BTC","currencyLong":"Bitcoin","minConfirmation":2,"txFee":0.0006,"isActive":true,"coinType":"BITCOIN","baseAddress":null}],"message":""}'
+    http_version: 
+  recorded_at: Thu, 18 Oct 2018 14:13:36 GMT
+recorded_with: VCR 4.0.0

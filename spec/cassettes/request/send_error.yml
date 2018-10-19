@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test.deribit.com/api/v1/private/account
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      x-deribit-sig:
+      - BxxwbXRLmYid.1539867654.jfihmFu+MymcZtaHwSjNN6EDZMzHn4GyibLW+usWXlw=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.10.3
+      Date:
+      - Thu, 18 Oct 2018 12:44:14 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '141'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"usOut":1539866654551750,"usIn":1539866654551749,"usDiff":1,"testnet":true,"success":false,"message":"authorization_required","error":10000}'
+    http_version: 
+  recorded_at: Thu, 18 Oct 2018 12:44:14 GMT
+recorded_with: VCR 4.0.0

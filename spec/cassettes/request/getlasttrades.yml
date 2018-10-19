@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://test.deribit.com/api/v1/public/getlasttrades?instrument=BTC-19OCT18-5250-C
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.10.3
+      Date:
+      - Fri, 19 Oct 2018 12:18:44 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '515'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: ASCII-8BIT
+      string: '{"usOut":1539951524494739,"usIn":1539951524494608,"usDiff":0,"testnet":true,"success":true,"result":[{"tradeId":1955836,"instrument":"BTC-19OCT18-5250-C","tradeSeq":13,"timeStamp":1539888612081,"quantity":0.1,"amount":0.1,"price":0.1835,"direction":"buy","tickDirection":0,"indexPrice":6388.98,"iv":372.38},{"tradeId":1953438,"instrument":"BTC-19OCT18-5250-C","tradeSeq":12,"timeStamp":1539884789380,"quantity":1.0,"amount":1.0,"price":0.18,"direction":"sell","tickDirection":3,"indexPrice":6361.53,"iv":352.86},{"tradeId":1953437,"instrument":"BTC-19OCT18-5250-C","tradeSeq":11,"timeStamp":1539884789380,"quantity":1.0,"amount":1.0,"price":0.18,"direction":"sell","tickDirection":2,"indexPrice":6361.53,"iv":352.86},{"tradeId":1950068,"instrument":"BTC-19OCT18-5250-C","tradeSeq":10,"timeStamp":1539872507645,"quantity":1.0,"amount":1.0,"price":0.1895,"direction":"buy","tickDirection":2,"indexPrice":6433.38,"iv":335.67},{"tradeId":1946294,"instrument":"BTC-19OCT18-5250-C","tradeSeq":9,"timeStamp":1539857616663,"quantity":5.0,"amount":5.0,"price":0.19,"direction":"buy","tickDirection":1,"indexPrice":6439.08,"iv":300.02},{"tradeId":1901681,"instrument":"BTC-19OCT18-5250-C","tradeSeq":8,"timeStamp":1539778339533,"quantity":1.0,"amount":1.0,"price":0.19,"direction":"buy","tickDirection":0,"indexPrice":6437.92,"iv":212.81},{"tradeId":1887657,"instrument":"BTC-19OCT18-5250-C","tradeSeq":7,"timeStamp":1539752566369,"quantity":5.0,"amount":5.0,"price":0.181,"direction":"sell","tickDirection":0,"indexPrice":6453.37,"iv":0.0},{"tradeId":1806191,"instrument":"BTC-19OCT18-5250-C","tradeSeq":6,"timeStamp":1539619277751,"quantity":5.0,"amount":5.0,"price":0.174,"direction":"sell","tickDirection":2,"indexPrice":6394.61,"iv":0.0},{"tradeId":1806025,"instrument":"BTC-19OCT18-5250-C","tradeSeq":5,"timeStamp":1539619097978,"quantity":5.0,"amount":5.0,"price":0.1845,"direction":"buy","tickDirection":0,"indexPrice":6397.01,"iv":144.5},{"tradeId":1691565,"instrument":"BTC-19OCT18-5250-C","tradeSeq":4,"timeStamp":1539560354440,"quantity":1.0,"amount":1.0,"price":0.1565,"direction":"buy","tickDirection":2,"indexPrice":6179.99,"iv":119.22}],"message":""}'
+    http_version: 
+  recorded_at: Fri, 19 Oct 2018 12:18:44 GMT
+recorded_with: VCR 4.0.0

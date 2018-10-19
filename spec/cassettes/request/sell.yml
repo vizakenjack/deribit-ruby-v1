@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test.deribit.com/api/v1/private/sell
+    body:
+      encoding: UTF-8
+      string: instrument=BTC-26OCT18&quantity=1&price=0.02
+    headers:
+      x-deribit-sig:
+      - BxxwbXRLmYid.1539961151.7+pU36kWh6KDDlpbk3obXzAQqDkAqS9LDa3XA17fXro=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.10.3
+      Date:
+      - Fri, 19 Oct 2018 14:42:31 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '605'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"testnet":true,"usOut":1539960151734134,"usIn":1539960151729810,"usDiff":4324,"success":true,"result":{"order":{"orderId":1765176708,"type":"limit","instrument":"BTC-26OCT18","direction":"sell","price":5451.0,"label":"","amount":10.0,"quantity":1,"filledQuantity":1,"filledAmount":10.0,"avgPrice":6413.5,"commission":7.8e-7,"created":1539960151734,"lastUpdate":1539960151734,"state":"filled","postOnly":false,"api":true,"max_show":1,"maxShowAmount":10,"adv":false},"trades":[{"label":"","selfTrade":false,"quantity":1,"amount":10.0,"price":6413.5,"tradeSeq":25203,"matchingId":1765173068}]},"message":""}'
+    http_version: 
+  recorded_at: Fri, 19 Oct 2018 14:42:31 GMT
+recorded_with: VCR 4.0.0

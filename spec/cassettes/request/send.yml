@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test.deribit.com/api/v1/private/account
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      x-deribit-sig:
+      - BxxwbXRLmYid.1539863783.0QFltJdnkBPWN3Whyo1S5+2pOaDmR5tYzoSg3OYYGtg=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.10.3
+      Date:
+      - Thu, 18 Oct 2018 11:39:43 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '525'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"usOut":1539862783512690,"usIn":1539862783511463,"usDiff":1227,"testnet":true,"success":true,"result":{"equity":10.0,"maintenanceMargin":0.0,"initialMargin":0.0,"availableFunds":10.0,"balance":10.0,"marginBalance":10.0,"SUPL":0.0,"SRPL":0.0,"PNL":0.0,"optionsPNL":0.0,"optionsSUPL":0.0,"optionsSRPL":0.0,"optionsD":0.0,"optionsG":0.0,"optionsV":0.0,"optionsTh":0.0,"futuresPNL":0.0,"futuresSUPL":0.0,"futuresSRPL":0.0,"deltaTotal":0.0,"sessionFunding":0.0,"depositAddress":"mpaJ9n6ex9dsU9bwA8bQdTWQ6J5h4pcHMB"},"message":""}'
+    http_version: 
+  recorded_at: Thu, 18 Oct 2018 11:39:43 GMT
+recorded_with: VCR 4.0.0

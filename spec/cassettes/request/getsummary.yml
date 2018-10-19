@@ -1,0 +1,41 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://test.deribit.com/api/v1/public/getsummary?instrument=BTC-19OCT18-5250-C
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.10.3
+      Date:
+      - Fri, 19 Oct 2018 12:24:00 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '258'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: ASCII-8BIT
+      string: '{"usOut":1539951840571158,"usIn":1539951840571089,"testnet":true,"success":true,"result":{"instrumentName":"BTC-19OCT18-5250-C","openInterest":0.0,"high":0.1895,"low":0.18,"volume":3.1,"volumeBtc":3.1,"last":0.1835,"bidPrice":"","askPrice":"","midPrice":"","markPrice":0.1747,"uPx":6361.03,"uIx":"index_price","iR":0,"created":"2018-10-19
+        12:24:00 GMT"},"message":""}'
+    http_version: 
+  recorded_at: Fri, 19 Oct 2018 12:24:00 GMT
+recorded_with: VCR 4.0.0
