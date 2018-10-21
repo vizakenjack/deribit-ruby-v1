@@ -1,0 +1,37 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test.deribit.com/api/v1/private/cancel
+    body:
+      encoding: UTF-8
+      string: orderId=1779991913
+    headers:
+      x-deribit-sig:
+      - BxxwbXRLmYid.1540141785.a3K/iCbvGHPxZkyc2laqGuulGCUZmiHBqYD4nzEQ/LM=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.10.3
+      Date:
+      - Sun, 21 Oct 2018 16:53:06 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '924'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"usOut":1540140786103065,"usIn":1540140786084260,"usDiff":18805,"testnet":true,"success":true,"message":"","result":{"order":{"closing_position":true,"orderId":1779991913,"type":"limit","instrument":"BTC-26OCT18","direction":"sell","price":6453.5,"label":"","amount":10.0,"quantity":1,"filledQuantity":0,"filledAmount":0.0,"avgPrice":0.0,"commission":0.0,"created":1540138751554,"lastUpdate":1540140786109,"state":"cancelled","postOnly":false,"api":false,"max_show":1,"maxShowAmount":10,"adv":false}},"order":{"warning":"deprecated
+        (to be removed)","closing_position":true,"orderId":1779991913,"type":"limit","instrument":"BTC-26OCT18","direction":"sell","price":6453.5,"label":"","amount":10.0,"quantity":1,"filledQuantity":0,"filledAmount":0.0,"avgPrice":0.0,"commission":0.0,"created":1540138751554,"lastUpdate":1540140786109,"state":"cancelled","postOnly":false,"api":false,"max_show":1,"maxShowAmount":10,"adv":false}}'
+    http_version: 
+  recorded_at: Sun, 21 Oct 2018 16:53:06 GMT
+recorded_with: VCR 4.0.0

@@ -95,5 +95,65 @@ module Deribit
       request.send(path: '/api/v1/private/sell', params: params)
     end
 
+    #
+    #  | Name         | Type       | Decription                                                                        |
+    #  |--------------|------------|-----------------------------------------------------------------------------------|
+    #  | `order_id`   | `integer`  | Required, ID of the order returned by "sell" or "buy" request                     |
+    #  | `quantity`   | `integer`  | Required, quantity, in contracts ($10 per contract for futures, ฿1 — for options) |
+    #  | `price`      | `float`    | Required, USD for futures, BTC for options                                        |
+    #  | `post_only`  | `boolean`  | Optional, if true then the order will be POST ONLY                                |
+    #  | `adv`        | `string`   | Optional, can be "implv", "usd", or absent (advanced order type)                  |
+
+    def edit(order_id, quantity, price, post_only: nil, adv: nil)
+      params = {
+        orderId: order_id,
+        quantity:   quantity,
+        price:      price
+      }
+
+      %i(post_only adv).each do |var|
+        variable = eval(var.to_s)
+        params[var] = variable if variable
+      end
+
+      request.send(path: '/api/v1/private/edit', params: params)
+    end
+
+    def cancel(order_id)
+      params = {
+        "orderId": order_id
+      }
+
+      request.send(path: '/api/v1/private/cancel', params: params)
+    end
+
+    def getopenorders(instrument)
+      request.send(path: '/api/v1/private/getopenorders', params: {instrument: instrument})
+    end
+
+    def positions
+      request.send(path: '/api/v1/private/positions', params: {})
+    end
+
+    def orderhistory(count=nil)
+      params = {}
+      params[:count] = count if count
+
+      request.send(path: '/api/v1/private/orderhistory', params: params)
+    end
+
+    def tradehistory(count: nil, instrument: nil, start_trade_id: nil)
+      params = {}
+
+      %i(count instrument).each do |var|
+        variable = eval(var.to_s)
+        params[var] = variable if variable
+      end
+
+      params["startTradeId"] = start_trade_id if start_trade_id
+
+      request.send(path: '/api/v1/private/orderhistory', params: params)
+    end
+
   end
 end

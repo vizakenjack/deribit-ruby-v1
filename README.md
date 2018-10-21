@@ -124,7 +124,7 @@ Constructor creates new API client.
   | `adv`        | `string`   | Optional, can be "implv", "usd", or absent (advanced order type)                  |
 
 
-* `sell(instrument, quantity, price, postOnly, label)` - [Doc](https://www.deribit.com/docs/api/#sell), private
+* `sell(instrument, quantity, price, post_only: post_only, label: label, max_show: max_show, adv: adv)` - [Doc](https://www.deribit.com/docs/api/#sell), private
 
   Place a sell order in an instrument.
 
@@ -139,6 +139,67 @@ Constructor creates new API client.
   | `label`      | `string`   | Optional, user defined maximum 32-char label for the order                        |
   | `max_show`   | `string`   | Optional, optional parameter, if "0" then the order will be hidden                |
   | `adv`        | `string`   | Optional, can be "implv", "usd", or absent (advanced order type)                  |
+
+
+* `edit(order_id, quantity, price, post_only: post_only, adv: adv)` - [Doc](https://www.deribit.com/docs/api/#edit)
+
+  Edit price and/or quantity of the own order. (Authorization is required).
+
+  **Parameters**
+
+  | Name         | Type       | Decription                                                                        |
+  |--------------|------------|-----------------------------------------------------------------------------------|
+  | `order_id`   | `integer`  | Required, ID of the order returned by "sell" or "buy" request                     |
+  | `quantity`   | `integer`  | Required, quantity, in contracts ($10 per contract for futures, ฿1 — for options) |
+  | `price`      | `float`    | Required, USD for futures, BTC for options                                        |
+  | `post_only`  | `boolean`  | Optional, if true then the order will be POST ONLY                                |
+  | `adv`        | `string`   | Optional, can be "implv", "usd", or absent (advanced order type)                  |
+
+`cancel(order_id)` - [Doc](https://www.deribit.com/docs/api/#cancel), private
+
+  Cancell own order by id.
+
+  **Parameters**
+
+  | Name         | Type       | Decription                                                                        |
+  |--------------|------------|-----------------------------------------------------------------------------------|
+  | `order_id`    | `integer`  | Required, ID of the order returned by "sell" or "buy" request
+
+* `getopenorders(instrument)` - [Doc](https://www.deribit.com/docs/api/#getopenorders), private
+
+  Retrieve open orders.
+
+  **Parameters**
+
+  | Name         | Type       | Description                                                           |
+  |--------------|------------|-----------------------------------------------------------------------|
+  | `instrument` | `string`   | Optional, instrument name, use if want orders for specific instrument |
+
+* `positions()` - [Doc](https://www.deribit.com/docs/api/#positions), private
+
+  Retreive positions.
+
+* `orderhistory(count)` - [Doc](https://www.deribit.com/docs/api/#orderhistory), private
+
+  Get history.
+
+  **Parameters**
+
+  | Name       | Type       | Description                                                |
+  |------------|------------|------------------------------------------------------------|
+  | `count`    | `integer`  | Optional, number of requested records                      |
+
+* `tradehistory(count: count, instrument: instrument, start_trade_id: start_trade_id)` - [Doc](https://www.deribit.com/docs/api/#tradehistory), private
+
+  Get private trade history of the account. (Authorization is required). The result is ordered by trade identifiers (trade id-s).
+
+  **Parameters**
+
+  | Name             | Type       | Description                                                                                        |
+  |------------------|------------|----------------------------------------------------------------------------------------------------|
+  | `count`          | `integer`  | Optional, number of results to fetch. Default: 20                                                  |
+  | `instrument`     | `string`   | Optional, name of instrument, also aliases “all”, “futures”, “options” are allowed. Default: "all" |
+  | `start_trade_id` | `integer`  | Optional, number of requested records                                                              |
 
 ## Development
 

@@ -72,4 +72,56 @@ RSpec.describe Deribit::API do
       expect(result).to include("trades")
     end
   end
+
+  it "#edit" do
+    VCR.use_cassette 'request/edit' do
+      result = api.edit("1780063496", 2, 0.02)
+      expect(result).to include("order")
+      expect(result).to include("trades")
+    end
+  end
+
+  it "#cancel" do
+    VCR.use_cassette 'request/cancel' do
+      result = api.cancel("1779991913")
+      expect(result).to include("order")
+      expect(result["order"]["state"]).to eq("cancelled")
+    end
+  end
+
+  it "#getopenorders" do
+    VCR.use_cassette 'request/getopenorders' do
+      result = api.getopenorders("BTC-26OCT18-6250-C")
+      expect(result.first).to include("orderId")
+    end
+  end
+
+  it "#positions" do
+    VCR.use_cassette 'request/positions' do
+      result = api.positions
+      expect(result.first).to include("instrument")
+    end
+  end
+
+  it "#orderhistory" do
+    VCR.use_cassette 'request/orderhistory' do
+      result = api.orderhistory
+      expect(result.first).to include("instrument")
+    end
+  end
+
+  it "#orderhistory with count" do
+    VCR.use_cassette 'request/orderhistory_count' do
+      result = api.orderhistory(20)
+      expect(result.first).to include("instrument")
+    end
+  end
+
+  it "#tradehistory" do
+    VCR.use_cassette 'request/tradehistory' do
+      result = api.tradehistory
+      expect(result.first).to include("instrument")
+    end
+  end
+
 end

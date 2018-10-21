@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test.deribit.com/api/v1/private/getopenorders
+    body:
+      encoding: UTF-8
+      string: instrument=BTC-26OCT18-6250-C
+    headers:
+      x-deribit-sig:
+      - BxxwbXRLmYid.1540143129.iREBlU0rQTMsIvo2n5JYVyxrcHb5/QLTq4d0GpE2FUE=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.10.3
+      Date:
+      - Sun, 21 Oct 2018 17:15:29 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '440'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"usOut":1540142129623721,"usIn":1540142129623651,"usDiff":70,"testnet":true,"success":true,"result":[{"orderId":1780191282,"type":"limit","instrument":"BTC-26OCT18-6250-C","direction":"sell","price":0.02,"quantity":1.0,"amount":1.0,"filledQuantity":0.0,"filledAmount":0.0,"avgPrice":0.0,"commission":0.0,"created":1540141996847,"lastUpdate":1540141996847,"state":"open","label":"","api":true,"max_show":1.0,"postOnly":false}],"message":""}'
+    http_version: 
+  recorded_at: Sun, 21 Oct 2018 17:15:29 GMT
+recorded_with: VCR 4.0.0

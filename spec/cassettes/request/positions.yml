@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test.deribit.com/api/v1/private/positions
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      x-deribit-sig:
+      - BxxwbXRLmYid.1540143387.q7Nra5vhcgjufVb+2uFQPRqmzWlkR+Ag5bO65AWooBU=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.10.3
+      Date:
+      - Sun, 21 Oct 2018 17:19:47 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '933'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"usOut":1540142387883337,"usIn":1540142387882778,"usDiff":559,"testnet":true,"success":true,"result":[{"instrument":"BTC-26OCT18-10000-C","kind":"option","averagePrice":0.02,"averageUsdPrice":128.75,"direction":"buy","size":2.0,"amount":2.0,"floatingPl":-0.039994902,"floatingUsdPl":-257.467187488,"realizedPl":0.0,"markPrice":0.0000025490001908242737,"indexPrice":6436.35,"maintenanceMargin":0.0,"initialMargin":0.0,"settlementPrice":0.000007837490168516065,"delta":0.00018,"openOrderMargin":0.0,"profitLoss":-0.039994902},{"instrument":"BTC-26OCT18","kind":"future","size":1,"amount":10.0,"averagePrice":6449.998323,"direction":"buy","sizeBtc":0.001570118,"floatingPl":-0.00001973,"realizedPl":7.23e-7,"estLiqPrice":1.01,"markPrice":6368.95,"indexPrice":6436.35,"maintenanceMargin":0.000008636,"initialMargin":0.000018842,"settlementPrice":6449.49,"delta":0.001570118,"openOrderMargin":0.0,"profitLoss":-0.00001973}],"message":""}'
+    http_version: 
+  recorded_at: Sun, 21 Oct 2018 17:19:47 GMT
+recorded_with: VCR 4.0.0

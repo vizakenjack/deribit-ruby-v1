@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test.deribit.com/api/v1/private/edit
+    body:
+      encoding: UTF-8
+      string: orderId=1780063496&quantity=2&price=0.02
+    headers:
+      x-deribit-sig:
+      - BxxwbXRLmYid.1540141198.GvPctOjFwZn7wdepS9Qt3N7NK9MUy4vK8amfs1kRDoo=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.10.3
+      Date:
+      - Sun, 21 Oct 2018 16:43:18 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '462'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"testnet":true,"usOut":1540140198528526,"usIn":1540140198525857,"usDiff":2669,"success":true,"result":{"order":{"orderId":1780063496,"type":"limit","instrument":"BTC-26OCT18-10000-C","direction":"buy","price":0.02,"quantity":2.0,"amount":2.0,"filledQuantity":0.0,"filledAmount":0.0,"avgPrice":0.0,"commission":0.0,"created":1540139910784,"lastUpdate":1540140198534,"state":"open","label":"","api":true,"max_show":2.0,"postOnly":false},"trades":[]},"message":""}'
+    http_version: 
+  recorded_at: Sun, 21 Oct 2018 16:43:18 GMT
+recorded_with: VCR 4.0.0

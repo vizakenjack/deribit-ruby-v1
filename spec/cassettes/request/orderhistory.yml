@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test.deribit.com/api/v1/private/orderhistory
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      x-deribit-sig:
+      - BxxwbXRLmYid.1540144156.O78WaXgR/roGE/Hno3cyZpK+JZpAkTqmA+3Dev1Jkdg=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.10.3
+      Date:
+      - Sun, 21 Oct 2018 17:32:38 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2689'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"usOut":1540143158395835,"usIn":1540143158393195,"usDiff":2640,"testnet":true,"success":true,"result":[{"amount":2.0,"filledAmount":2.0,"orderId":1780063496,"type":"limit","instrument":"BTC-26OCT18-10000-C","direction":"buy","price":0.02,"quantity":2.0,"filledQuantity":2.0,"avgPrice":0.02,"state":"filled","created":1540139910784,"tstamp":1540140471191,"commission":0.0008,"modified":1540140471191,"label":"","postOnly":false},{"amount":10.0,"filledAmount":10.0,"orderId":1780075159,"type":"market","instrument":"BTC-26OCT18","direction":"buy","price":7405.0,"quantity":1,"filledQuantity":1,"avgPrice":6450.0,"state":"filled","created":1540140102214,"tstamp":1540140102214,"commission":7.75e-7,"modified":1540140102214,"label":"","postOnly":false},{"amount":10.0,"filledAmount":10.0,"orderId":1780001238,"type":"market","instrument":"BTC-26OCT18","direction":"sell","price":5482.0,"quantity":1,"filledQuantity":1,"avgPrice":6452.5,"state":"filled","created":1540138896884,"tstamp":1540138896884,"commission":7.75e-7,"modified":1540138896884,"label":"","postOnly":false},{"amount":10.0,"filledAmount":10.0,"orderId":1765176708,"type":"limit","instrument":"BTC-26OCT18","direction":"sell","price":5451.0,"quantity":1,"filledQuantity":1,"avgPrice":6413.5,"state":"filled","created":1539960151734,"tstamp":1539960151734,"commission":7.8e-7,"modified":1539960151734,"label":"","postOnly":false},{"amount":10.0,"filledAmount":10.0,"orderId":1765172314,"type":"limit","instrument":"BTC-26OCT18","direction":"sell","price":5450.5,"quantity":1,"filledQuantity":1,"avgPrice":6412.5,"state":"filled","created":1539960104353,"tstamp":1539960104353,"commission":7.8e-7,"modified":1539960104353,"label":"","postOnly":false},{"amount":10.0,"filledAmount":10.0,"orderId":1764981001,"type":"market","instrument":"BTC-26OCT18","direction":"buy","price":7339.0,"quantity":1,"filledQuantity":1,"avgPrice":6425.5,"state":"filled","created":1539958188826,"tstamp":1539958188826,"commission":7.78e-7,"modified":1539958188826,"label":"","postOnly":false},{"amount":10.0,"filledAmount":10.0,"orderId":1764959035,"type":"market","instrument":"BTC-26OCT18","direction":"buy","price":7339.0,"quantity":1,"filledQuantity":1,"avgPrice":6418.0,"state":"filled","created":1539957968390,"tstamp":1539957968390,"commission":7.79e-7,"modified":1539957968390,"label":"","postOnly":false},{"amount":10.0,"filledAmount":10.0,"orderId":1764956875,"type":"market","instrument":"BTC-26OCT18","direction":"buy","price":7339.5,"quantity":1,"filledQuantity":1,"avgPrice":6418.0,"state":"filled","created":1539957947151,"tstamp":1539957947151,"commission":7.79e-7,"modified":1539957947151,"label":"","postOnly":false}],"message":""}'
+    http_version: 
+  recorded_at: Sun, 21 Oct 2018 17:32:38 GMT
+recorded_with: VCR 4.0.0
