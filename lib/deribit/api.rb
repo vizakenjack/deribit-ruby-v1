@@ -12,8 +12,13 @@ module Deribit
       request.send(path: "/api/v1/public/getorderbook", params: {instrument: instrument})
     end
 
-    def getinstruments(params={})
-      request.send(path: '/api/v1/public/getinstruments', params: params)
+    def getinstruments(expired: false, only_active: true)
+      response = request.send(path: '/api/v1/public/getinstruments', params: {expired: expired})
+      if response.is_a?(Array) and only_active
+       response = response.select {|i| i["isActive"] == true}
+      end
+
+      response
     end
 
     def index
@@ -127,7 +132,7 @@ module Deribit
       request.send(path: '/api/v1/private/cancel', params: params)
     end
 
-    def getopenorders(instrument)
+    def getopenorders(instrument=nil)
       request.send(path: '/api/v1/private/getopenorders', params: {instrument: instrument})
     end
 

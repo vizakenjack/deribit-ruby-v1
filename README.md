@@ -54,9 +54,15 @@ Constructor creates new API client.
 
 ### Methods
 
-* `getinstruments()` - [Doc](https://www.deribit.com/docs/api/#getinstruments), public
+* `getinstruments(expired: false, only_active: true)` - [Doc](https://www.deribit.com/docs/api/#getinstruments), public
 
   Returns active instruments
+  **Parameters**
+
+  | Name         | Type       | Decription                                                 |
+  |--------------|------------|------------------------------------------------------------|
+  | `expired`    | `boolean`  | Optional, for returning all expired instruments.           |
+  | `only_active`| `boolean`  | Optional, returns only isActive true instruments           |
 
 * `getorderbook(instrument)` - [Doc](https://www.deribit.com/docs/api/#getinstruments), public
 
