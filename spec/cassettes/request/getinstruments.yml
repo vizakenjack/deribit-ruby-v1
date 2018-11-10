@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://test.deribit.com/api/v1/public/getinstruments
+    uri: https://test.deribit.com/api/v1/public/getinstruments?expired=false
     body:
       encoding: US-ASCII
       string: ''
@@ -21,11 +21,11 @@ http_interactions:
       Server:
       - nginx/1.10.3
       Date:
-      - Thu, 18 Oct 2018 13:33:21 GMT
+      - Sat, 10 Nov 2018 12:51:47 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '2662'
+      - '2358'
       Connection:
       - keep-alive
       Strict-Transport-Security:
@@ -34,19 +34,21 @@ http_interactions:
       - SAMEORIGIN
     body:
       encoding: ASCII-8BIT
-      string: '{"usOut":1539869601121981,"usIn":1539869601114973,"usDiff":7008,"testnet":true,"success":true,"result":[{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-122500-P","isActive":false,"settlement":"month","created":"2018-07-24
+      string: '{"usOut":1541854307981661,"usIn":1541854307976542,"usDiff":5119,"testnet":true,"success":true,"result":[{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-122500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":122500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-4000-P","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":4000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-7250-P","isActive":true,"settlement":"week","created":"2018-10-18
-        08:00:01 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":7250.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-5500-C","isActive":true,"settlement":"month","created":"2018-09-26
+        08:00:00 GMT","strike":4000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-5500-C","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":5500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-7500-C","isActive":true,"settlement":"month","created":"2018-07-06
-        13:13:42 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":7500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-29MAR19-10000-P","isActive":true,"settlement":"month","created":"2018-08-02
+        08:00:00 GMT","strike":5500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-29MAR19-10000-P","isActive":true,"settlement":"month","created":"2018-08-02
         01:07:58 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2019-03-29
-        08:00:00 GMT","strike":10000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-142500-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":10000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-4000-C","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":4000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-8000-C","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":8000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-7500-C","isActive":true,"settlement":"month","created":"2018-07-06
+        13:13:42 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":7500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-142500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":142500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-85000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
@@ -62,45 +64,33 @@ http_interactions:
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
         08:00:00 GMT","strike":5500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-8000-P","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":8000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-10000-P","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":10000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-210000-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":8000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-210000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":210000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-125000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":125000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-6750-C","isActive":true,"settlement":"week","created":"2018-10-11
-        08:00:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":6750.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-6000-C","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":6000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-165000-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":125000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-165000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":165000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-92500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":92500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-157500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":157500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-5750-C","isActive":true,"settlement":"week","created":"2018-10-11
-        08:00:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":5750.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-147500-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":157500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-147500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":147500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-4000-C","isActive":true,"settlement":"month","created":"2018-09-26
+        08:00:00 GMT","strike":147500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-220000-P","isActive":false,"settlement":"month","created":"2018-07-24
+        13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":220000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-4000-C","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":4000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-6500-P","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":6500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-10000-P","isActive":true,"settlement":"month","created":"2018-07-06
+        08:00:00 GMT","strike":4000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-7000-P","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":7000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-10000-P","isActive":true,"settlement":"month","created":"2018-07-06
         13:13:42 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":10000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-220000-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":10000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-230000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":220000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-230000-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":230000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-225000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":230000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-5250-C","isActive":true,"settlement":"week","created":"2018-10-11
-        13:20:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":5250.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-225000-P","isActive":false,"settlement":"month","created":"2018-07-24
-        13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":225000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-6250-C","isActive":true,"settlement":"week","created":"2018-10-11
-        08:00:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":6250.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-9000-P","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":9000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-29MAR19-5000-P","isActive":true,"settlement":"month","created":"2018-08-02
+        08:00:00 GMT","strike":225000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-6000-C","isActive":true,"settlement":"week","created":"2018-11-08
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":6000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-29MAR19-5000-P","isActive":true,"settlement":"month","created":"2018-08-02
         01:07:58 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2019-03-29
         08:00:00 GMT","strike":5000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-182500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
@@ -112,7 +102,9 @@ http_interactions:
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":185000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-105000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":105000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-115000-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":105000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-7250-P","isActive":true,"settlement":"week","created":"2018-11-08
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":7250.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-115000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":115000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-112500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
@@ -124,19 +116,17 @@ http_interactions:
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":82500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-145000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":145000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-205000-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":145000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-8000-P","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":8000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-205000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":205000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-6750-C","isActive":true,"settlement":"week","created":"2018-10-18
-        08:00:01 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":6750.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-6250-C","isActive":true,"settlement":"week","created":"2018-10-18
-        08:00:01 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":6250.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-150000-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":205000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-6250-P","isActive":true,"settlement":"week","created":"2018-11-08
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":6250.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-150000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":150000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-95000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":95000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-5500-C","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":5500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-137500-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":95000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-137500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":137500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-7000-P","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
@@ -150,39 +140,43 @@ http_interactions:
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":97500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-212500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":212500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-8500-P","isActive":true,"settlement":"month","created":"2018-09-26
+        08:00:00 GMT","strike":212500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-6500-P","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":6500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-8500-P","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":8500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-212500-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":8500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-5500-P","isActive":true,"settlement":"week","created":"2018-11-08
+        16:03:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":5500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-212500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":212500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-145000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":145000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-185000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":185000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-5000-C","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":5000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-6000-P","isActive":true,"settlement":"month","created":"2018-09-26
+        08:00:00 GMT","strike":185000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-6000-P","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":6000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-7000-C","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":7000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-207500-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":6000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-7000-P","isActive":true,"settlement":"week","created":"2018-11-08
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":7000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-207500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":207500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-6000-P","isActive":true,"settlement":"week","created":"2018-10-11
-        08:00:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":6000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-2500-P","isActive":true,"settlement":"month","created":"2018-07-06
+        08:00:00 GMT","strike":207500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-2500-P","isActive":true,"settlement":"month","created":"2018-07-06
         13:13:42 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":2500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-6000-C","isActive":true,"settlement":"week","created":"2018-10-11
-        08:00:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":6000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-170000-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":2500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-170000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":170000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-17500-C","isActive":true,"settlement":"month","created":"2018-07-24
         10:36:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":17500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-125000-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":17500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-6500-P","isActive":true,"settlement":"week","created":"2018-11-08
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":6500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-125000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":125000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-29MAR19-15000-P","isActive":true,"settlement":"month","created":"2018-08-02
         01:07:58 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2019-03-29
         08:00:00 GMT","strike":15000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-197500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":197500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-4500-P","isActive":true,"settlement":"month","created":"2018-09-26
+        08:00:00 GMT","strike":197500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-9000-P","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":9000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-4500-P","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":4500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-4500-P","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
         08:00:00 GMT","strike":4500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-8000-C","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
@@ -208,9 +202,7 @@ http_interactions:
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":230000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-200000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":200000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-6500-C","isActive":true,"settlement":"week","created":"2018-10-11
-        08:00:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":6500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-167500-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":200000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-167500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":167500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-120000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
@@ -220,23 +212,21 @@ http_interactions:
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":200000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-6000-C","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":6000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-11000-P","isActive":true,"settlement":"month","created":"2018-08-29
-        09:45:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":11000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-10000-C","isActive":true,"settlement":"month","created":"2018-07-06
+        08:00:00 GMT","strike":6000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-10000-C","isActive":true,"settlement":"month","created":"2018-07-06
         13:13:42 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":10000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-6750-P","isActive":true,"settlement":"week","created":"2018-10-11
-        08:00:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":6750.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-10000-C","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":10000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-182500-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":10000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-6750-C","isActive":true,"settlement":"week","created":"2018-11-08
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":6750.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-182500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":182500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-5500-C","isActive":true,"settlement":"week","created":"2018-10-11
-        08:00:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":5500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-127500-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":182500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-8500-C","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":8500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-127500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":127500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-187500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":187500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-29MAR19-7500-C","isActive":true,"settlement":"month","created":"2018-08-02
+        08:00:00 GMT","strike":187500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-5500-C","isActive":true,"settlement":"week","created":"2018-11-08
+        16:03:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":5500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-29MAR19-7500-C","isActive":true,"settlement":"month","created":"2018-08-02
         01:07:58 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2019-03-29
         08:00:00 GMT","strike":7500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-187500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
@@ -244,9 +234,7 @@ http_interactions:
         14:06:41 GMT","tickSize":0.5,"pricePrecision":1,"expiration":"2018-12-28 08:00:00
         GMT","contractSize":10.0},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-107500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":107500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-9000-C","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":9000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-172500-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":107500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-172500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":172500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-7500-P","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
@@ -258,53 +246,45 @@ http_interactions:
         01:07:58 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2019-03-29
         08:00:00 GMT","strike":15000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-9500-P","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":9500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-8500-P","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
+        08:00:00 GMT","strike":9500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-8500-P","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":8500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-110000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":110000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-7250-P","isActive":true,"settlement":"week","created":"2018-10-15
-        06:05:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":7250.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-11000-C","isActive":true,"settlement":"month","created":"2018-08-29
-        09:45:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":11000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-102500-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":110000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-85000-P","isActive":false,"settlement":"month","created":"2018-07-24
+        13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":85000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-102500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":102500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-190000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":190000.0,"optionType":"call"},{"kind":"future","baseCurrency":"BTC","currency":"USD","minTradeSize":1,"instrumentName":"BTC-29MAR19","isActive":true,"settlement":"month","created":"2018-10-04
         04:51:34 GMT","tickSize":0.5,"pricePrecision":1,"expiration":"2019-03-29 08:00:00
-        GMT","contractSize":10.0},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-85000-P","isActive":false,"settlement":"month","created":"2018-07-24
+        GMT","contractSize":10.0},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-162500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":85000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-162500-C","isActive":false,"settlement":"month","created":"2018-07-24
-        13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":162500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-5500-P","isActive":true,"settlement":"week","created":"2018-10-11
-        08:00:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":5500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-157500-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":162500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-4500-C","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":4500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-157500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":157500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-82500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":82500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-142500-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":82500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-5500-C","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":5500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-142500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":142500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-165000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":165000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-4500-C","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":4500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-10500-P","isActive":true,"settlement":"month","created":"2018-08-28
-        11:48:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":10500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-7000-C","isActive":true,"settlement":"week","created":"2018-10-11
-        08:00:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":7000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-8000-P","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":8000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-155000-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":4500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-155000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":155000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-7250-C","isActive":true,"settlement":"week","created":"2018-10-18
-        08:00:01 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":7250.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-160000-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":155000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-160000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":160000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-12500-P","isActive":true,"settlement":"month","created":"2018-07-06
+        08:00:00 GMT","strike":160000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-5750-P","isActive":true,"settlement":"week","created":"2018-11-08
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":5750.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-4000-P","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":4000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-12500-P","isActive":true,"settlement":"month","created":"2018-07-06
         13:13:42 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":12500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-4000-C","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":4000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-137500-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":12500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-137500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":137500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-172500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
@@ -318,27 +298,31 @@ http_interactions:
         01:07:58 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2019-03-29
         08:00:00 GMT","strike":12500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-140000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":140000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-100000-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":140000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-7000-C","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":7000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-100000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":100000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-220000-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":100000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-6000-C","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":6000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-220000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":220000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-222500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":222500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-130000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":130000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-6250-P","isActive":true,"settlement":"week","created":"2018-10-11
-        08:00:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":6250.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-215000-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":130000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-215000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":215000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-205000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":205000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-29MAR19-12500-P","isActive":true,"settlement":"month","created":"2018-08-02
         01:07:58 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2019-03-29
-        08:00:00 GMT","strike":12500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-7250-C","isActive":true,"settlement":"week","created":"2018-10-15
-        06:05:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
+        08:00:00 GMT","strike":12500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-7250-C","isActive":true,"settlement":"week","created":"2018-11-08
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
         08:00:00 GMT","strike":7250.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-90000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":90000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-195000-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":90000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-5500-P","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":5500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-195000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":195000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-162500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
@@ -352,27 +336,17 @@ http_interactions:
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":87500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-180000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":180000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-7500-C","isActive":true,"settlement":"week","created":"2018-10-15
-        06:50:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":7500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-10000-P","isActive":true,"settlement":"month","created":"2018-09-27
+        08:00:00 GMT","strike":180000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-10000-P","isActive":true,"settlement":"month","created":"2018-09-27
         19:50:10 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":10000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-10500-C","isActive":true,"settlement":"month","created":"2018-08-28
-        11:48:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":10500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-6250-P","isActive":true,"settlement":"week","created":"2018-10-18
-        08:00:01 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":6250.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-4500-C","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":4500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-202500-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":10000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-202500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":202500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-4500-P","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":4500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-147500-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":202500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-147500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":147500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-152500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":152500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-7000-P","isActive":true,"settlement":"week","created":"2018-10-11
-        08:00:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":7000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-207500-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":152500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-7000-C","isActive":true,"settlement":"week","created":"2018-11-08
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":7000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-207500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":207500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-97500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
@@ -382,25 +356,19 @@ http_interactions:
         01:07:58 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2019-03-29
         08:00:00 GMT","strike":5000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-9000-C","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":9000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-6500-C","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":6500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-9500-C","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":9500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-167500-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":9000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-167500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":167500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-160000-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":167500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-6500-C","isActive":true,"settlement":"week","created":"2018-11-08
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":6500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-160000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":160000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-5750-P","isActive":true,"settlement":"week","created":"2018-10-11
-        08:00:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":5750.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-180000-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":160000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-180000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":180000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-7500-C","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
         08:00:00 GMT","strike":7500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-2500-C","isActive":true,"settlement":"month","created":"2018-07-06
         13:13:42 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":2500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-8000-C","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":8000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-202500-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":2500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-202500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":202500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-225000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
@@ -408,25 +376,19 @@ http_interactions:
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":170000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-9500-C","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":9500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-7500-C","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":7500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-5750-C","isActive":true,"settlement":"week","created":"2018-10-18
-        08:00:01 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":5750.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-7500-P","isActive":true,"settlement":"month","created":"2018-07-06
+        08:00:00 GMT","strike":9500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-7500-P","isActive":true,"settlement":"month","created":"2018-07-06
         13:13:42 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":7500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-190000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":190000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-6500-C","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":6500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-5750-P","isActive":true,"settlement":"week","created":"2018-10-18
-        08:00:01 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":5750.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-6750-P","isActive":true,"settlement":"week","created":"2018-10-18
-        08:00:01 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":6750.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-217500-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":6500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-217500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":217500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-192500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":192500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-110000-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":192500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-6000-P","isActive":true,"settlement":"week","created":"2018-11-08
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":6000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-110000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":110000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-8500-C","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
@@ -440,33 +402,33 @@ http_interactions:
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":92500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-5000-C","isActive":true,"settlement":"month","created":"2018-07-06
         13:13:42 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":5000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-8500-C","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":8500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-29MAR19-2500-C","isActive":true,"settlement":"month","created":"2018-08-02
+        08:00:00 GMT","strike":5000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-6750-P","isActive":true,"settlement":"week","created":"2018-11-08
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":6750.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-29MAR19-2500-C","isActive":true,"settlement":"month","created":"2018-08-02
         01:07:58 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2019-03-29
-        08:00:00 GMT","strike":2500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-6000-P","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":6000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-215000-C","isActive":false,"settlement":"month","created":"2018-07-24
-        13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":215000.0,"optionType":"call"},{"kind":"future","baseCurrency":"BTC","currency":"USD","minTradeSize":1,"instrumentName":"BTC-26OCT18","isActive":true,"settlement":"month","created":"2018-09-21
-        08:01:00 GMT","tickSize":0.5,"pricePrecision":1,"expiration":"2018-10-26 08:00:00
-        GMT","contractSize":10},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-15000-C","isActive":true,"settlement":"month","created":"2018-07-06
-        13:13:42 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":15000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-9000-P","isActive":true,"settlement":"month","created":"2018-09-26
+        08:00:00 GMT","strike":2500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-9000-P","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":9000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-9500-P","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":9500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-87500-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":9000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-9000-C","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":9000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-215000-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":87500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-130000-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":215000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-15000-C","isActive":true,"settlement":"month","created":"2018-07-06
+        13:13:42 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":15000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-87500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":130000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-127500-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":87500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-9500-P","isActive":true,"settlement":"month","created":"2018-11-04
+        15:57:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":9500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-5750-C","isActive":true,"settlement":"week","created":"2018-11-08
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":5750.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-130000-C","isActive":false,"settlement":"month","created":"2018-07-24
+        13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":130000.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-9500-C","isActive":true,"settlement":"month","created":"2018-11-04
+        15:57:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":9500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-127500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":127500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-135000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":135000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-7500-P","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":7500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-117500-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":135000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-117500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":117500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-177500-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
@@ -476,33 +438,25 @@ http_interactions:
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":122500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-197500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":197500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-5250-P","isActive":true,"settlement":"week","created":"2018-10-11
-        13:20:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":5250.0,"optionType":"put"},{"kind":"future","baseCurrency":"BTC","currency":"USD","minTradeSize":1,"instrumentName":"BTC-PERPETUAL","isActive":true,"settlement":"perpetual","created":"2018-08-13
+        08:00:00 GMT","strike":197500.0,"optionType":"call"},{"kind":"future","baseCurrency":"BTC","currency":"USD","minTradeSize":1,"instrumentName":"BTC-PERPETUAL","isActive":true,"settlement":"perpetual","created":"2018-08-13
         13:42:34 GMT","tickSize":0.5,"pricePrecision":1,"expiration":"3000-01-01 08:00:00
-        GMT","contractSize":10.0},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-17500-P","isActive":true,"settlement":"month","created":"2018-07-24
+        GMT","contractSize":10.0},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-6500-C","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":6500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-17500-P","isActive":true,"settlement":"month","created":"2018-07-24
         10:36:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":17500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-5500-P","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":5500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-227500-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":17500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-6000-P","isActive":true,"settlement":"month","created":"2018-10-30
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
+        08:00:00 GMT","strike":6000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-227500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":227500.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-30NOV18-6500-P","isActive":true,"settlement":"month","created":"2018-09-26
         08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-30
-        08:00:00 GMT","strike":6500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-7000-P","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":7000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-7500-P","isActive":true,"settlement":"week","created":"2018-10-15
-        06:50:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":7500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-5000-P","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":5000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-95000-P","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":6500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-16NOV18-6250-C","isActive":true,"settlement":"week","created":"2018-11-08
+        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-11-16
+        08:00:00 GMT","strike":6250.0,"optionType":"call"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-95000-P","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
-        08:00:00 GMT","strike":95000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-19OCT18-6500-P","isActive":true,"settlement":"week","created":"2018-10-11
-        08:00:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-19
-        08:00:00 GMT","strike":6500.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-26OCT18-4000-P","isActive":true,"settlement":"month","created":"2018-08-28
-        08:01:00 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-10-26
-        08:00:00 GMT","strike":4000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-117500-C","isActive":false,"settlement":"month","created":"2018-07-24
+        08:00:00 GMT","strike":95000.0,"optionType":"put"},{"kind":"option","baseCurrency":"BTC","currency":"USD","minTradeSize":0.1,"instrumentName":"BTC-28DEC18-117500-C","isActive":false,"settlement":"month","created":"2018-07-24
         13:23:59 GMT","tickSize":0.0005,"pricePrecision":4,"expiration":"2018-12-28
         08:00:00 GMT","strike":117500.0,"optionType":"call"}],"message":""}'
     http_version: 
-  recorded_at: Thu, 18 Oct 2018 13:33:21 GMT
+  recorded_at: Sat, 10 Nov 2018 12:51:48 GMT
 recorded_with: VCR 4.0.0

@@ -6,7 +6,7 @@ module Deribit
     include HTTParty
     #debug_output $stdout
 
-    base_uri ENV['DOMAIN'] || 'https://deribit.com/'
+    base_uri ENV['DOMAIN'] || 'https://www.deribit.com/'
 
     attr_accessor :credentials
 
@@ -16,8 +16,8 @@ module Deribit
 
     def send(path: '/api/v1/public/test', params: {})
 			if path.start_with?('/api/v1/private/')
-				headers = {Deribit::ImmutableHeaderKey.new("x-deribit-sig") => generate_signature(path, params)}
-				response = self.class.post(path, headers: headers, body: params)
+				headers = {"x-deribit-sig" => generate_signature(path, params)}
+				response = self.class.post(path, body: params, headers: headers)
 			else
 				response = self.class.get(path, query: params)
 			end

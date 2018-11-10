@@ -91,7 +91,7 @@ RSpec.describe Deribit::API do
 
   it "#getopenorders" do
     VCR.use_cassette 'request/getopenorders' do
-      result = api.getopenorders("BTC-26OCT18-6250-C")
+      result = api.getopenorders(instrument: "BTC-16NOV18-5500-C")
       expect(result.first).to include("orderId")
     end
   end

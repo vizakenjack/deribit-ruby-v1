@@ -132,8 +132,18 @@ module Deribit
       request.send(path: '/api/v1/private/cancel', params: params)
     end
 
-    def getopenorders(instrument=nil)
-      request.send(path: '/api/v1/private/getopenorders', params: {instrument: instrument})
+    def getopenorders(instrument: nil, order_id: nil)
+       params = {}
+
+      if instrument
+        params[:instrument] = instrument
+      end
+
+      if order_id
+        params[:orderId] = order_id
+      end
+
+      request.send(path: '/api/v1/private/getopenorders', params: params)
     end
 
     def positions
