@@ -1,6 +1,5 @@
 module Deribit
   class API
-
     attr_reader :request
 
     def initialize(api_key, api_secret)
@@ -133,15 +132,9 @@ module Deribit
     end
 
     def getopenorders(instrument: nil, order_id: nil)
-       params = {}
-
-      if instrument
-        params[:instrument] = instrument
-      end
-
-      if order_id
-        params[:orderId] = order_id
-      end
+      params = {}
+      params[:instrument] = instrument if instrument
+      params[:orderId] = order_id if order_id
 
       request.send(path: '/api/v1/private/getopenorders', params: params)
     end
