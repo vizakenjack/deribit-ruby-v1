@@ -1,6 +1,5 @@
 module Deribit
   class API
-
     attr_reader :request
 
     def initialize(api_key, api_secret)
@@ -130,6 +129,14 @@ module Deribit
       }
 
       request.send(path: '/api/v1/private/cancel', params: params)
+    end
+
+    def cancelall(type = "all")
+      params = {
+        "type": type
+      }
+      
+      request.send(path: '/api/v1/private/cancelall', params: params)
     end
 
     def getopenorders(instrument: nil, order_id: nil)

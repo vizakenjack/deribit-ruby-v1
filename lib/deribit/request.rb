@@ -24,14 +24,14 @@ module Deribit
 
       raise Error.new(code: response.code) if Error.is_error_response?(response: response)
 
-      json = JSON.parse(response.body)
+      json = JSON.parse(response.body, symbolize_names: true)
 
-      raise Error.new(message: "Failed: " + json["message"]) unless json["success"]
+      raise Error.new(message: "Failed: " + json[:message]) unless json[:success]
 
-      if json.include?("result")
-        json["result"]
-      elsif json.include?("message")
-        json["message"]
+      if json.include?(:result)
+        json[:result]
+      elsif json.include?(:message)
+        json[:message]
       else
         "ok"
       end
