@@ -207,6 +207,45 @@ Constructor creates new API client.
   | `instrument`     | `string`   | Optional, name of instrument, also aliases “all”, “futures”, “options” are allowed. Default: "all" |
   | `start_trade_id` | `integer`  | Optional, number of requested records                                                              |
 
+
+## Websocket API
+
+```
+require 'deribit'
+
+ws = Deribit::WS.new("KEY", "SECRET")
+
+ws.account
+
+#subscribe
+ws.subscribe(['BTC-30NOV18-6500-P'], events: [:order_book])
+```
+
+### Handler
+
+Create inheritance class for handling WS notifications
+
+```
+class MyHandler < Deribit::WS::Handler
+  #event handler
+  def order_book_event(json)
+    #you actions here
+
+    #json example for order_book_event
+    #{"state"=>"open", "settlementPrice"=>0.2105, "instrument"=>"BTC-30NOV18-6500-P", "bids"=>[{"quantity"=>10.0, "amount"=>10.0, "price"=>0.2785, "cm"=>10.0, "cm_amount"=>10.0}, {"quantity"=>1.0, "amount"=>1.0, "price"=>0.05, "cm"=>11.0, "cm_amount"=>11.0}], "asks"=>[{"quantity"=>9.0, "amount"=>9.0, "price"=>0.2935, "cm"=>9.0, "cm_amount"=>9.0}], "tstamp"=>1542650516519, "last"=>0.285, "low"=>0.285, "high"=>0.285, "mark"=>0.286, "uPx"=>5060.54, "uIx"=>"index_price", "iR"=>0, "markIv"=>106.0, "askIv"=>110.45, "bidIv"=>0.0, "delta"=>-0.90264, "gamma"=>0.00019, "vega"=>1.48288, "theta"=>-7.42706}
+  end
+
+  #action handler
+  def getinstruments(json)
+    #you actions here
+  end
+end
+```
+
+Available events you can check in the guide https://deribit.com/main#/pages/docs/api WebSockets API section.
+
+
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
