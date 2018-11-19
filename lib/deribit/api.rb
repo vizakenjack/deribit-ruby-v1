@@ -139,7 +139,7 @@ module Deribit
       request.send(path: '/api/v1/private/cancelall', params: params)
     end
 
-    def getopenorders(instrument: nil, order_id: nil)
+    def getopenorders(instrument: nil, order_id: nil, type: nil)
        params = {}
 
       if instrument
@@ -148,6 +148,10 @@ module Deribit
 
       if order_id
         params[:orderId] = order_id
+      end
+
+      if type
+        params[:type] = type
       end
 
       request.send(path: '/api/v1/private/getopenorders', params: params)
@@ -161,7 +165,7 @@ module Deribit
       params = {
         "orderId": order_id
       }
-      
+
       request.send(path: '/api/v1/private/orderstate', params: params)
     end
 
