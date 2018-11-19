@@ -64,7 +64,7 @@ module Deribit
           price:      price
       }
 
-      %i(type stopPx post_only label max_show adv).each do |var|
+      %i(type stopPx post_only label max_show adv execInst).each do |var|
         variable = eval(var.to_s)
         params[var] = variable if variable
       end
@@ -91,7 +91,7 @@ module Deribit
           price:      price
       }
 
-      %i(type stopPx post_only label max_show adv).each do |var|
+      %i(type stopPx post_only label max_show adv execInst).each do |var|
         variable = eval(var.to_s)
         params[var] = variable if variable
       end
@@ -155,6 +155,14 @@ module Deribit
 
     def positions
       request.send(path: '/api/v1/private/positions', params: {})
+    end
+
+    def orderstate(order_id)
+      params = {
+        "orderId": order_id
+      }
+      
+      request.send(path: '/api/v1/private/orderstate', params: params)
     end
 
     def orderhistory(count=nil)
