@@ -63,7 +63,7 @@ module Deribit
     def handle_notifications(notifications)
       return if notifications.empty?
       notification, *tail = notifications;
-      handler.send(notification["message"], notification["result"])
+      handler.send(notification[:message], notification[:result])
       handle_notifications(tail)
     end
 
