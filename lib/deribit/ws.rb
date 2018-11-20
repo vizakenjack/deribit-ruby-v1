@@ -6,16 +6,25 @@ module Deribit
     URL = ENV['WS_DOMAIN'] || 'wss://www.deribit.com/ws/api/v1/'
     AVAILABLE_EVENTS = [:order_book, :trade, :user_order]
 
-    attr_reader :socket, :response, :ids_stack, :handler
+    attr_reader :socket, :response, :ids_stack, :handler, :trigger
 
     def initialize(api_key, api_secret, handler = Handler)
       @credentials = Credentials.new(api_key, api_secret)
       @request     = Request.new(@credentials)
       @socket      = connect
 
-      @handler    = handler.new
+      if handler.instance_of?(Class)
+        @handler   = handler.new
+      else
+        @handler   = handler
+      end
+
       @ids_stack  = []
       start_handle
+    end
+
+    def set_trigger(trigger)
+      @trigger = trigger
     end
 
     def connect
@@ -41,7 +50,7 @@ module Deribit
     # subscribed user are reported with trade direction "buy"/"sell" from the
     # subscribed user point of view ("I sell ...", "I buy ..."), see below.
     # Note, for "index" - events are ignored and can be []
-    def subscribe(instruments=[] , events: ["user_order"])
+    def subscribe(instruments=['BTC-PERPETUAL'] , events: ["user_order"])
       raise "Events must include only #{AVAILABLE_EVENTS.join(", ")} actions" if events.map{|e| AVAILABLE_EVENTS.include?(e.to_sym)}.index(false) or events.empty?
       raise "instruments are required" if instruments.empty?
       arguments = {instrument: instruments, event: events}
@@ -62,8 +71,13 @@ module Deribit
 
     def handle_notifications(notifications)
       return if notifications.empty?
-      notification, *tail = notifications;
-      handler.send(notification[:message], notification[:result])
+      notification, *tail = notifications
+      if trigger
+        trigger.send(notification[:message], notification[:result])
+      else
+        handler.send(notification[:message], notification[:result])
+      end
+
       handle_notifications(tail)
     end
 
