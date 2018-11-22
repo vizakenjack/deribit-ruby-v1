@@ -94,8 +94,6 @@ module Deribit
 
       notifications = notification[:result].select{|i| i[:instrument] == trigger.instrument}
 
-      p notification
-
       if notifications.any?
         trigger.send(notification[:message], notifications)
       else
