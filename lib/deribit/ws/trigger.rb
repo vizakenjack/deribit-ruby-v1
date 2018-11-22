@@ -2,13 +2,18 @@
 module Deribit
   class WS
     class Trigger < Handler
+      DEBUG = false
+
+      attr_reader :instrument, :price, :direction
 
       def initialize(price: , instrument: "BTC-PERPETUAL", direction: :more, block: ->{puts "DEBUG: Triggered block executed"})
-        @insrument, @price, @direction = instrument, price, direction
+        @instrument, @price, @direction = instrument, price, direction
         @block = block
       end
 
       def trade_event(json)
+        debug(json)
+
         max_price, min_price = get_min_max_price(json)
 
         if @direction == :more
@@ -26,6 +31,13 @@ module Deribit
       def get_min_max_price(json)
         prices = json.map{|i| i[:price]}
         [prices.max, prices.min]
+      end
+
+      def debug(json)
+        if DEBUG
+          puts "DEBUG"
+          p json
+        end
       end
 
     end

@@ -6,7 +6,8 @@ module Deribit
     URL = ENV['WS_DOMAIN'] || 'wss://www.deribit.com/ws/api/v1/'
     AVAILABLE_EVENTS = [:order_book, :trade, :user_order]
 
-    attr_reader :socket, :response, :ids_stack, :handler, :trigger
+    attr_reader :socket, :response, :ids_stack, :handler
+    attr_accessor :triggers
 
     def initialize(api_key, api_secret, handler = Handler)
       @credentials = Credentials.new(api_key, api_secret)
@@ -20,11 +21,17 @@ module Deribit
       end
 
       @ids_stack  = []
+      @triggers   = []
+
       start_handle
     end
 
     def set_trigger(trigger)
-      @trigger = trigger
+      @triggers << trigger
+    end
+
+    def remove_trigger(trigger)
+      @triggers.delete(trigger)
     end
 
     def connect
@@ -72,13 +79,29 @@ module Deribit
     def handle_notifications(notifications)
       return if notifications.empty?
       notification, *tail = notifications
-      if trigger
-        trigger.send(notification[:message], notification[:result])
+      if triggers.any?
+        handle_triggers(triggers, notification)
       else
         handler.send(notification[:message], notification[:result])
       end
 
       handle_notifications(tail)
+    end
+
+    def handle_triggers(_triggers, notification)
+      return if _triggers.empty?
+      trigger, *tail = _triggers
+
+      notifications = notification[:result].select{|i| i[:instrument] == trigger.instrument}
+
+      p notification
+
+      if notifications.any?
+        trigger.send(notification[:message], notifications)
+      else
+        handler.send(notification[:message], notification[:result])
+      end
+      handle_triggers(tail, notification)
     end
 
     private
