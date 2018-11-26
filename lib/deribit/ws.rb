@@ -6,7 +6,7 @@ module Deribit
     URL = ENV['WS_DOMAIN'] || 'wss://www.deribit.com/ws/api/v1/'
     AVAILABLE_EVENTS = [:order_book, :trade, :user_order]
 
-    attr_reader :socket, :response, :ids_stack, :handler
+    attr_reader :socket, :response, :ids_stack, :handler, :subscribed_instruments
     attr_accessor :triggers
 
     def initialize(api_key, api_secret, handler = Handler)
@@ -23,7 +23,23 @@ module Deribit
       @ids_stack  = []
       @triggers   = []
 
+      #the structure of subscribed_instruments: {'event_name' => ['instrument1', 'instrumetn2']]}
+      @subscribed_instruments = {}
+
       start_handle
+    end
+
+    def add_subscribed_instruments(instruments: , events: )
+      instruments = [instruments] unless instruments.is_a?(Array)
+
+      events.each do |event|
+        _event = event.to_sym
+        @subscribed_instruments[_event] = if sub_instr = @subscribed_instruments[_event]
+                                            (sub_instr + instruments).uniq
+                                          else
+                                            instruments.uniq
+                                          end
+      end
     end
 
     def set_trigger(trigger)
@@ -62,6 +78,20 @@ module Deribit
       raise "instruments are required" if instruments.empty?
       arguments = {instrument: instruments, event: events}
       send(path: '/api/v1/private/subscribe', arguments: arguments)
+    end
+
+    #unsubscribe for all notifications if instruments is empty
+    def unsubscribe(instruments=[])
+      instruments = [instruments] unless instruments.is_a?(Array)
+      send(path: '/api/v1/private/unsubscribe')
+      sleep(0.2)
+      if instruments.any?
+        @subscribed_instruments.each do |event, _instruments|
+          @subscribed_instruments[event] = _instruments - instruments
+          subscribe(@subscribed_instruments[event], events: [event])
+          sleep(0.2)
+        end
+      end
     end
 
     def account
@@ -111,9 +141,16 @@ module Deribit
           json = JSON.parse(msg.data, symbolize_names: true)
           #if find query send json to handler
           if json[:id] and stack_id = instance.ids_stack.find{|i| i[json[:id]]}
-            method  = stack_id[json[:id]]
+            method  = stack_id[json[:id]][0]
             #pass the method to handler
-            instance.ids_stack.delete(stack_id)
+            params = instance.ids_stack.delete(stack_id)
+
+            #save subscribed_instruments for resubscribe in unsubscribe action
+            if method == 'subscribe'
+              params = params[json[:id]][1][:arguments]
+              instance.add_subscribed_instruments(instruments: params[:instrument], events: params[:event])
+            end
+
             instance.handler.send(method, json)
           elsif json[:notifications]
             instance.handle_notifications(json[:notifications])
@@ -145,7 +182,7 @@ module Deribit
       params[:id] = Time.now.to_i
 
       action = path[/\/api.*\/([^\/]+)$/, 1]
-      put_id(params[:id], action)
+      put_id(params[:id], [action, params])
 
       @socket.send(params.to_json)
     end
