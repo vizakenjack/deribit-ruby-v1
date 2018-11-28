@@ -94,6 +94,59 @@ module Deribit
       end
     end
 
+    #  | Name         | Type       | Decription                                                                        |
+    #  |--------------|------------|-----------------------------------------------------------------------------------|
+    #  | `instrument` | `string`   | Required, instrument name                                                         |
+    #  | `quantity`   | `integer`  | Required, quantity, in contracts ($10 per contract for futures, ฿1 — for options) |
+    #  | `price`      | `float`    | Required, USD for futures, BTC for options                                        |
+    #  | `type`       | `string`   | Required, "limit", "market" or for futures only: "stop_limit"                     |
+    #  | `stopPx`     | `string`   | Required, needed for stop_limit order, defines stop price                         |
+    #  | `post_only`  | `boolean`  | Optional, if true then the order will be POST ONLY                                |
+    #  | `label`      | `string`   | Optional, user defined maximum 32-char label for the order                        |
+    #  | `max_show`   | `string`   | Optional, optional parameter, if "0" then the order will be hidden                |
+    #  | `adv`        | `string`   | Optional, can be "implv", "usd", or absent (advanced order type)                  |
+
+    def buy(instrument, quantity, price, type: "limit", stopPx: nil, execInst: "index_price", post_only: nil, label: nil, max_show: nil, adv: nil)
+      params = {
+          instrument: instrument,
+          quantity:   quantity
+      }
+      params[:price] = price if price
+
+      %i(type stopPx post_only label max_show adv execInst).each do |var|
+        variable = eval(var.to_s)
+        params[var] = variable if variable
+      end
+
+      send(path: '/api/v1/private/buy', arguments: params)
+    end
+
+    #  | Name         | Type       | Decription                                                                        |
+    #  |--------------|------------|-----------------------------------------------------------------------------------|
+    #  | `instrument` | `string`   | Required, instrument name                                                         |
+    #  | `quantity`   | `integer`  | Required, quantity, in contracts ($10 per contract for futures, ฿1 — for options) |
+    #  | `price`      | `float`    | Required, USD for futures, BTC for options                                        |
+    #  | `post_only`  | `boolean`  | Optional, if true then the order will be POST ONLY                                |
+    #  | `label`      | `string`   | Optional, user defined maximum 32-char label for the order                        |
+    #  | `max_show`   | `string`   | Optional, optional parameter, if "0" then the order will be hidden                |
+    #  | `adv`        | `string`   | Optional, can be "implv", "usd", or absent (advanced order type)                  |
+    #
+
+    def sell(instrument, quantity, price, type: "limit", stopPx: nil, execInst: "index_price", post_only: nil, label: nil, max_show: nil, adv: nil)
+      params = {
+          instrument: instrument,
+          quantity:   quantity
+      }
+      params[:price] = price if price
+
+      %i(type stopPx post_only label max_show adv execInst).each do |var|
+        variable = eval(var.to_s)
+        params[var] = variable if variable
+      end
+
+      send(path: '/api/v1/private/sell', arguments: params)
+    end
+
     def account
       send(path: '/api/v1/private/account')
     end
@@ -163,16 +216,10 @@ module Deribit
         end
       end
 
-      @socket.on :close do |e|
-        p e
-        exit 1
-      end
-
       @socket.on :error do |e|
         p e
       end
     end
-
 
     def send(path: , arguments: {})
       return unless path
@@ -184,6 +231,7 @@ module Deribit
       action = path[/\/api.*\/([^\/]+)$/, 1]
       put_id(params[:id], [action, params])
 
+      p params.to_json
       @socket.send(params.to_json)
     end
 
