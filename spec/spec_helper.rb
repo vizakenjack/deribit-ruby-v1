@@ -1,4 +1,5 @@
-ENV['DOMAIN'] = 'https://test.deribit.com/'
+ENV['DOMAIN']    = 'https://test.deribit.com/'
+ENV['WS_DOMAIN'] = 'wss://test.deribit.com/ws/api/v1/'
 
 require "bundler/setup"
 require "deribit"

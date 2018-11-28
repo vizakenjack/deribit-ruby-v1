@@ -17,10 +17,12 @@ module Deribit
         max_price, min_price = get_min_max_price(json)
 
         if @direction == :more
-          @block.call if @price >= max_price
+          @block.call and return true if @price >= max_price
         else
-          @block.call if @price <= min_price
+          @block.call and return true if @price <= min_price
         end
+
+        false
       end
 
       #[{:quantity=>42, :amount=>420.0, :tradeId=>2359783, :instrument=>"BTC-PERPETUAL", :timeStamp=>1542715743547, :price=>4354.5, :direction=>"buy", :orderId=>0, :matchingId=>0, :tradeSeq=>450613, :tickDirection=>3, :indexPrice=>4362.65, :state=>"open", :label=>"", :me=>""},
