@@ -108,14 +108,15 @@ module Deribit
     #  | `post_only`  | `boolean`  | Optional, if true then the order will be POST ONLY                                |
     #  | `adv`        | `string`   | Optional, can be "implv", "usd", or absent (advanced order type)                  |
 
-    def edit(order_id, quantity, price, post_only: nil, adv: nil)
+    def edit(order_id, quantity, price, post_only: nil, adv: nil, stopPx: nil)
       params = {
-        orderId: order_id,
+        orderId:    order_id,
         quantity:   quantity,
+        stopPx:     stopPx,
         price:      price
       }
 
-      %i(post_only adv).each do |var|
+      %i(post_only adv stopPx).each do |var|
         variable = eval(var.to_s)
         params[var] = variable if variable
       end

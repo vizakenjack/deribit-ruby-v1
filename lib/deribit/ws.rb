@@ -4,7 +4,7 @@ module Deribit
   class WS
 
     URL = ENV['WS_DOMAIN'] || 'wss://www.deribit.com/ws/api/v1/'
-    AVAILABLE_EVENTS = [:order_book, :trade, :user_order]
+    AVAILABLE_EVENTS = [:order_book, :trade, :user_order, :index, :trades]
 
     attr_reader :socket, :response, :ids_stack, :handler, :subscribed_instruments
     attr_accessor :triggers

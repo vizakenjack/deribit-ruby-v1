@@ -1,4 +1,3 @@
-
 module Deribit
   class WS
     class Trigger < Handler
