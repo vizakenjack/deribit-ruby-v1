@@ -4,7 +4,7 @@ require 'httparty'
 module Deribit
   class Request
     include HTTParty
-    #debug_output $stdout
+    # debug_output $stdout
 
     base_uri ENV['DOMAIN'] || 'https://www.deribit.com/'
 

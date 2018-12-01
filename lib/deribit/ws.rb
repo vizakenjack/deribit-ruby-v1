@@ -74,8 +74,12 @@ module Deribit
     # subscribed user point of view ("I sell ...", "I buy ..."), see below.
     # Note, for "index" - events are ignored and can be []
     def subscribe(instruments=['BTC-PERPETUAL'] , events: ["user_order"])
+      instruments = [instruments]  if instruments.is_a?(String)
+      events = [events]  if events.is_a?(String)
+
       raise "Events must include only #{AVAILABLE_EVENTS.join(", ")} actions" if events.map{|e| AVAILABLE_EVENTS.include?(e.to_sym)}.index(false) or events.empty?
       raise "instruments are required" if instruments.empty?
+
       arguments = {instrument: instruments, event: events}
       send(path: '/api/v1/private/subscribe', arguments: arguments)
     end
