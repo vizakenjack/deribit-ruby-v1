@@ -2,7 +2,7 @@ module Deribit
   class WS
 
     class Handler
-      AVAILABLE_METHODS = [:account, :getcurrencies, :subscribe, :unsubscribe, :buy, :sell, :trade_event, :my_trade_event, :order_book_event, :user_order_event, :announcements, :index]
+      AVAILABLE_METHODS = [:account, :getcurrencies, :subscribe, :unsubscribe, :buy, :sell, :trade, :my_trade, :order_book, :user_order, :announcements, :index]
 
       def method_missing(m, json, &block)
         puts "Delegating #{m}"

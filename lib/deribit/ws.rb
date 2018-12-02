@@ -4,7 +4,7 @@ module Deribit
   class WS
 
     URL = ENV['WS_DOMAIN'] || 'wss://www.deribit.com/ws/api/v1/'
-    AVAILABLE_EVENTS = [:order_book, :trade, :user_order, :index, :trades]
+    AVAILABLE_EVENTS = [:order_book, :trade, :user_order, :trades]
 
     attr_reader :socket, :response, :ids_stack, :handler, :subscribed_instruments
     attr_accessor :triggers
@@ -110,7 +110,7 @@ module Deribit
     #  | `max_show`   | `string`   | Optional, optional parameter, if "0" then the order will be hidden                |
     #  | `adv`        | `string`   | Optional, can be "implv", "usd", or absent (advanced order type)                  |
 
-    def buy(instrument, quantity, price, type: "limit", stopPx: nil, execInst: "index_price", post_only: nil, label: nil, max_show: nil, adv: nil)
+    def buy(instrument, quantity, price, type: "limit", stopPx: nil, execInst: "mark_price", post_only: nil, label: nil, max_show: nil, adv: nil)
       params = {
           instrument: instrument,
           quantity:   quantity
@@ -136,7 +136,7 @@ module Deribit
     #  | `adv`        | `string`   | Optional, can be "implv", "usd", or absent (advanced order type)                  |
     #
 
-    def sell(instrument, quantity, price, type: "limit", stopPx: nil, execInst: "index_price", post_only: nil, label: nil, max_show: nil, adv: nil)
+    def sell(instrument, quantity, price, type: "limit", stopPx: nil, execInst: "mark_price", post_only: nil, label: nil, max_show: nil, adv: nil)
       params = {
           instrument: instrument,
           quantity:   quantity
@@ -159,8 +159,33 @@ module Deribit
       send(path: '/api/v1/public/getinstruments', arguments: {expired: expired})
     end
 
+    def getopenorders(instrument: "BTC-PERPETUAL", order_id: nil, type: nil)
+      params = {}
+      params[:instrument] = instrument if instrument
+      params[:orderId]    = order_id if order_id
+      params[:type]       = type if type
+
+      send(path: '/api/v1/private/getopenorders', arguments: params)
+    end
+
     def getcurrencies
       send(path: '/api/v1/public/getcurrencies')
+    end
+
+    def cancel(order_id)
+      params = {
+        "orderId": order_id
+      }
+
+      send(path: '/api/v1/private/cancel', arguments: params)
+    end
+
+    def cancelall(type = "all")
+      params = {
+        "type": type
+      }
+
+      send(path: '/api/v1/private/cancelall', arguments: params)
     end
 
     def handle_notifications(notifications)
@@ -196,8 +221,12 @@ module Deribit
       @socket.on :message do |msg|
         if msg.type == :text
           json = JSON.parse(msg.data, symbolize_names: true)
-          #if find query send json to handler
-          if json[:id] and stack_id = instance.ids_stack.find{|i| i[json[:id]]}
+          p "Subscribed! Response: #{json}" if json[:message] == "subscribed"
+          # if find query send json to handler
+
+          if json[:result] == "pong"
+            p "#{DateTime.now} - pong"
+          elsif json[:id] and stack_id = instance.ids_stack.find{|i| i[json[:id]]}
             method  = stack_id[json[:id]][0]
             #pass the method to handler
             params = instance.ids_stack.delete(stack_id)
@@ -235,7 +264,7 @@ module Deribit
       action = path[/\/api.*\/([^\/]+)$/, 1]
       put_id(params[:id], [action, params])
 
-      p params.to_json
+      p params
       @socket.send(params.to_json)
     end
 
