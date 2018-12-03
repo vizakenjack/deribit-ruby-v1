@@ -7,7 +7,7 @@ module Deribit
     AVAILABLE_EVENTS = [:order_book, :trade, :user_order, :trades]
 
     attr_reader :socket, :response, :ids_stack, :handler, :subscribed_instruments
-    attr_accessor :triggers
+    attr_accessor :triggers, :last_message
 
     def initialize(api_key, api_secret, handler = Handler)
       @credentials = Credentials.new(api_key, api_secret)
@@ -25,6 +25,8 @@ module Deribit
 
       #the structure of subscribed_instruments: {'event_name' => ['instrument1', 'instrumetn2']]}
       @subscribed_instruments = {}
+
+      @last_message = {}
 
       start_handle
     end
@@ -219,8 +221,11 @@ module Deribit
     def start_handle
       instance = self
       @socket.on :message do |msg|
+        @last_message = { msg: msg, time: Time.now.to_i }
+
         if msg.type == :text
           json = JSON.parse(msg.data, symbolize_names: true)
+          @last_message[:json] = json
           p "Subscribed! Response: #{json}" if json[:message] == "subscribed"
           # if find query send json to handler
 
@@ -245,6 +250,7 @@ module Deribit
           end
 
         elsif msg.type == :close
+          p "trying to reconnect = msg type close"
           instance.reconnect!
         end
       end
