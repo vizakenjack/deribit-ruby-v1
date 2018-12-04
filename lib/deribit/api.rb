@@ -178,7 +178,7 @@ module Deribit
 
       params["startTradeId"] = start_trade_id if start_trade_id
 
-      request.send(path: '/api/v1/private/orderhistory', params: params)
+      request.send(path: '/api/v1/private/tradehistory', params: params)
     end
 
   end
