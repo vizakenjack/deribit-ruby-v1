@@ -7,7 +7,7 @@ module Deribit
     AVAILABLE_EVENTS = [:order_book, :trade, :user_order, :trades]
 
     attr_reader :socket, :response, :ids_stack, :handler, :subscribed_instruments
-    attr_accessor :triggers, :last_message
+    attr_accessor :triggers
 
     def initialize(api_key, api_secret, handler = Handler)
       @credentials = Credentials.new(api_key, api_secret)
@@ -23,10 +23,8 @@ module Deribit
       @ids_stack  = []
       @triggers   = []
 
-      #the structure of subscribed_instruments: {'event_name' => ['instrument1', 'instrumetn2']]}
+      #the structure of subscribed_instruments: {'event_name' => ['instrument1', 'instrument2']]}
       @subscribed_instruments = {}
-
-      @last_message = {}
 
       start_handle
     end
@@ -59,6 +57,13 @@ module Deribit
     def reconnect!
       @socket = connect
       start_handle
+
+      if subscribed_instruments.any?
+        subscribed_instruments.each do |event, instruments|
+          p "Reconnecting to event: #{event} at instrument: #{instruments}"
+          subscribe(instruments, events: event.to_s)
+        end
+      end
     end
 
     def ping
@@ -76,8 +81,8 @@ module Deribit
     # subscribed user point of view ("I sell ...", "I buy ..."), see below.
     # Note, for "index" - events are ignored and can be []
     def subscribe(instruments=['BTC-PERPETUAL'] , events: ["user_order"])
-      instruments = [instruments]  if instruments.is_a?(String)
-      events = [events]  if events.is_a?(String)
+      instruments = [instruments]  unless instruments.is_a?(Array)
+      events = [events]  unless events.is_a?(Array)
 
       raise "Events must include only #{AVAILABLE_EVENTS.join(", ")} actions" if events.map{|e| AVAILABLE_EVENTS.include?(e.to_sym)}.index(false) or events.empty?
       raise "instruments are required" if instruments.empty?
@@ -221,11 +226,8 @@ module Deribit
     def start_handle
       instance = self
       @socket.on :message do |msg|
-        @last_message = { msg: msg, time: Time.now.to_i }
-
         if msg.type == :text
           json = JSON.parse(msg.data, symbolize_names: true)
-          @last_message[:json] = json
           p "Subscribed! Response: #{json}" if json[:message] == "subscribed"
           # if find query send json to handler
 
@@ -250,7 +252,7 @@ module Deribit
           end
 
         elsif msg.type == :close
-          p "trying to reconnect = msg type close"
+          p "trying to reconnect = got close event, msg: #{msg.inspect}"
           instance.reconnect!
         end
       end
