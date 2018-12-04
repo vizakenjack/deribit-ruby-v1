@@ -176,7 +176,7 @@ module Deribit
         params[var] = variable if variable
       end
 
-      params["startTradeId"] = start_trade_id if start_trade_id
+      params[:startTradeId] = start_trade_id if start_trade_id
 
       request.send(path: '/api/v1/private/tradehistory', params: params)
     end
