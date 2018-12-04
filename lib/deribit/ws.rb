@@ -57,7 +57,11 @@ module Deribit
     def reconnect!
       @socket = connect
       start_handle
+      sleep 3
+      resubscribe!
+    end
 
+    def resubscribe!
       if subscribed_instruments.any?
         subscribed_instruments.each do |event, instruments|
           p "Reconnecting to event: #{event} at instrument: #{instruments}"
