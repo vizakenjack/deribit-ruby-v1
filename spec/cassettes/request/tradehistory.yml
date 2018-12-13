@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://test.deribit.com/api/v1/private/orderhistory
+    uri: https://test.deribit.com/api/v1/private/tradehistory
     body:
       encoding: US-ASCII
       string: ''

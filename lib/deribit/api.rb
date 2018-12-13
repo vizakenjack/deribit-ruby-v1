@@ -7,11 +7,11 @@ module Deribit
       @request    = Request.new(credentials)
     end
 
-    def getorderbook(instrument)
+    def orderbook(instrument)
       request.send(path: "/api/v1/public/getorderbook", params: {instrument: instrument})
     end
 
-    def getinstruments(expired: false, only_active: true)
+    def instruments(expired: false, only_active: true)
       response = request.send(path: '/api/v1/public/getinstruments', params: {expired: expired})
       if response.is_a?(Array) and only_active
        response = response.select {|i| i[:isActive] == true}
@@ -24,11 +24,15 @@ module Deribit
       request.send(path: '/api/v1/public/index', params: {})
     end
 
-    def getcurrencies
+    def test
+      request.send(path: '/api/v1/public/test', params: {})
+    end
+
+    def currencies
       request.send(path: '/api/v1/public/getcurrencies', params: {})
     end
 
-    def getlasttrades(instrument, count: nil, since: nil)
+    def last_trades(instrument, count: nil, since: nil)
       params = {instrument: instrument}
       params[:count] = count if count
       params[:since] = since if since
@@ -36,8 +40,19 @@ module Deribit
       request.send(path: '/api/v1/public/getlasttrades', params: params)
     end
 
-    def getsummary(instrument)
+    def summary(instrument)
       request.send(path: '/api/v1/public/getsummary', params: {instrument: instrument})
+    end
+
+    def margins(instrument, quantity: 1, price: 0.01, amount: nil)
+      params = {
+          instrument: instrument,
+          quantity:   quantity,
+          amount:     amount,
+          price:      price
+      }
+
+      request.send(path: '/api/v1/private/getmargins', params: params)
     end
 
     def account(params={})
@@ -132,7 +147,7 @@ module Deribit
       request.send(path: '/api/v1/private/cancel', params: params)
     end
 
-    def cancelall(type = "all")
+    def cancel_all(type = "all")
       params = {
         "type": type
       }
@@ -140,7 +155,7 @@ module Deribit
       request.send(path: '/api/v1/private/cancelall', params: params)
     end
 
-    def getopenorders(instrument: nil, order_id: nil, type: nil)
+    def open_orders(instrument: nil, order_id: nil, type: nil)
       params = {}
       params[:instrument] = instrument if instrument
       params[:orderId]    = order_id if order_id
@@ -153,7 +168,7 @@ module Deribit
       request.send(path: '/api/v1/private/positions', params: {})
     end
 
-    def orderstate(order_id)
+    def order_state(order_id)
       params = {
         "orderId": order_id
       }
@@ -161,14 +176,14 @@ module Deribit
       request.send(path: '/api/v1/private/orderstate', params: params)
     end
 
-    def orderhistory(count=nil)
+    def order_history(count=nil)
       params = {}
       params[:count] = count if count
 
       request.send(path: '/api/v1/private/orderhistory', params: params)
     end
 
-    def tradehistory(count: nil, instrument: nil, start_trade_id: nil)
+    def trade_history(count: nil, instrument: nil, start_trade_id: nil)
       params = {}
 
       %i(count instrument).each do |var|

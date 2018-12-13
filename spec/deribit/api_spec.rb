@@ -10,15 +10,15 @@ RSpec.describe Deribit::API do
     end
   end
 
-  it "#getinstruments" do
+  it "#instruments" do
     VCR.use_cassette 'request/getinstruments' do
-      expect(api.getinstruments.first).to include(:instrumentName)
+      expect(api.instruments.first).to include(:instrumentName)
     end
   end
 
-  it "#getorderbook" do
+  it "#orderbook" do
     VCR.use_cassette 'request/getorderbook' do
-      result = api.getorderbook("BTC-19OCT18-5250-C")
+      result = api.orderbook("BTC-19OCT18-5250-C")
       expect(result).to include(:asks)
       expect(result).to include(:bids)
     end
@@ -32,25 +32,25 @@ RSpec.describe Deribit::API do
     end
   end
 
-  it "#getcurrencies" do
+  it "#currencies" do
     VCR.use_cassette 'request/getcurrencies' do
-      result = api.getcurrencies
+      result = api.currencies
       expect(result.first).to include(:currency)
     end
   end
 
-  it "#getlasttrades" do
+  it "#last_trades" do
     VCR.use_cassette 'request/getlasttrades' do
-      result = api.getlasttrades("BTC-19OCT18-5250-C")
+      result = api.last_trades("BTC-19OCT18-5250-C")
       expect(result.first).to include(:direction)
       expect(result.first).to include(:indexPrice)
       expect(result.first).to include(:quantity)
     end
   end
 
-  it "#getsummary" do
+  it "#summary" do
     VCR.use_cassette 'request/getsummary' do
-      result = api.getsummary("BTC-19OCT18-5250-C")
+      result = api.summary("BTC-19OCT18-5250-C")
       expect(result).to include(:volume)
       expect(result).to include(:uPx)
       expect(result).to include(:high)
@@ -89,9 +89,9 @@ RSpec.describe Deribit::API do
     end
   end
 
-  it "#getopenorders" do
+  it "#open_orders" do
     VCR.use_cassette 'request/getopenorders' do
-      result = api.getopenorders(instrument: "BTC-16NOV18-5500-C")
+      result = api.open_orders(instrument: "BTC-16NOV18-5500-C")
       expect(result.first).to include(:orderId)
     end
   end
@@ -103,23 +103,23 @@ RSpec.describe Deribit::API do
     end
   end
 
-  it "#orderhistory" do
+  it "#order_history" do
     VCR.use_cassette 'request/orderhistory' do
-      result = api.orderhistory
+      result = api.order_history
       expect(result.first).to include(:instrument)
     end
   end
 
-  it "#orderhistory with count" do
+  it "#order_history with count" do
     VCR.use_cassette 'request/orderhistory_count' do
-      result = api.orderhistory(20)
+      result = api.order_history(20)
       expect(result.first).to include(:instrument)
     end
   end
 
-  it "#tradehistory" do
+  it "#trade_history" do
     VCR.use_cassette 'request/tradehistory' do
-      result = api.tradehistory
+      result = api.trade_history
       expect(result.first).to include(:instrument)
     end
   end

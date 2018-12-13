@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    deribit (0.2.4)
+    deribit (0.3.0)
       httparty
       websocket-client-simple (~> 0.3.0)
 

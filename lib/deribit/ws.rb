@@ -166,11 +166,11 @@ module Deribit
       send(path: '/api/v1/private/account')
     end
 
-    def getinstruments(expired: false)
+    def instruments(expired: false)
       send(path: '/api/v1/public/getinstruments', arguments: {expired: expired})
     end
 
-    def getopenorders(instrument: "BTC-PERPETUAL", order_id: nil, type: nil)
+    def openorders(instrument: "BTC-PERPETUAL", order_id: nil, type: nil)
       params = {}
       params[:instrument] = instrument if instrument
       params[:orderId]    = order_id if order_id
@@ -179,7 +179,7 @@ module Deribit
       send(path: '/api/v1/private/getopenorders', arguments: params)
     end
 
-    def getcurrencies
+    def currencies
       send(path: '/api/v1/public/getcurrencies')
     end
 
@@ -191,7 +191,7 @@ module Deribit
       send(path: '/api/v1/private/cancel', arguments: params)
     end
 
-    def cancelall(type = "all")
+    def cancel_all(type = "all")
       params = {
         "type": type
       }

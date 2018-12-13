@@ -3,9 +3,7 @@ ENV['WS_DOMAIN'] = 'wss://test.deribit.com/ws/api/v1/'
 
 require "bundler/setup"
 require "deribit"
-
 require 'vcr'
-
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
