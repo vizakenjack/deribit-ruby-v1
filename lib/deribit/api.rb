@@ -14,7 +14,7 @@ module Deribit
     def instruments(expired: false, only_active: true)
       response = request.send(path: '/api/v1/public/getinstruments', params: {expired: expired})
       if response.is_a?(Array) and only_active
-       response = response.select {|i| i[:isActive] == true}
+        response = response.select {|i| i[:isActive] == true}
       end
 
       response
@@ -40,8 +40,11 @@ module Deribit
       request.send(path: '/api/v1/public/getlasttrades', params: params)
     end
 
-    def summary(instrument)
-      request.send(path: '/api/v1/public/getsummary', params: {instrument: instrument})
+    def summary(instrument = 'all')
+      params = {}
+      params[:instrument] = instrument if instrument
+
+      request.send(path: '/api/v1/public/getsummary', params: params)
     end
 
     def margins(instrument, quantity: 1, price: 0.01, amount: nil)
