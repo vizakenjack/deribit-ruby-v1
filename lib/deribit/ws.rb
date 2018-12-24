@@ -236,7 +236,7 @@ module Deribit
           # if find query send json to handler
 
           if json[:result] == "pong"
-            p "#{DateTime.now} - pong"
+            # p "#{DateTime.now} - pong"
           elsif json[:id] and stack_id = instance.ids_stack.find{|i| i[json[:id]]}
             method  = stack_id[json[:id]][0]
             #pass the method to handler
