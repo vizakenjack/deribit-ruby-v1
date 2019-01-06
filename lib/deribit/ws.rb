@@ -179,6 +179,10 @@ module Deribit
       send(path: '/api/v1/private/getopenorders', arguments: params)
     end
 
+    def summary(instrument = 'BTC-PERPETUAL')
+      send(path: '/api/v1/public/getsummary', arguments: { instrument: instrument })
+    end
+
     def currencies
       send(path: '/api/v1/public/getcurrencies')
     end
