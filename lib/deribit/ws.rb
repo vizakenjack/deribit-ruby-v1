@@ -239,8 +239,8 @@ module Deribit
           p "Subscribed! Response: #{json}" if json[:message] == "subscribed"
           # if find query send json to handler
 
-          if json[:result] == "pong"
-            # p "#{DateTime.now} - pong"
+          if json[:result] == 'pong'
+            instance.handler.send(:pong, json)
           elsif json[:id] and stack_id = instance.ids_stack.find{|i| i[json[:id]]}
             method  = stack_id[json[:id]][0]
             #pass the method to handler
