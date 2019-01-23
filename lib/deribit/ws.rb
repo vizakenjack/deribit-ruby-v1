@@ -70,6 +70,10 @@ module Deribit
       end
     end
 
+    def close
+      @socket.close
+    end
+
     def ping
       message = {action: "/api/v1/public/ping"}
       @socket.send(message.to_json)
@@ -170,6 +174,14 @@ module Deribit
       send(path: '/api/v1/public/getinstruments', arguments: {expired: expired})
     end
 
+    def currencies
+      send(path: '/api/v1/public/getcurrencies')
+    end
+
+    def summary(instrument = 'BTC-PERPETUAL')
+      send(path: '/api/v1/public/getsummary', arguments: { instrument: instrument })
+    end
+
     def openorders(instrument: "BTC-PERPETUAL", order_id: nil, type: nil)
       params = {}
       params[:instrument] = instrument if instrument
@@ -177,14 +189,6 @@ module Deribit
       params[:type]       = type if type
 
       send(path: '/api/v1/private/getopenorders', arguments: params)
-    end
-
-    def summary(instrument = 'BTC-PERPETUAL')
-      send(path: '/api/v1/public/getsummary', arguments: { instrument: instrument })
-    end
-
-    def currencies
-      send(path: '/api/v1/public/getcurrencies')
     end
 
     def cancel(order_id)
