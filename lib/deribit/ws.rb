@@ -79,6 +79,11 @@ module Deribit
       @socket.send(message.to_json)
     end
 
+    def test
+      message = {action: "/api/v1/public/test"}
+      @socket.send(message.to_json)
+    end
+
     # events to be reported, possible events:
     # "order_book" -- order book change
     # "trade" -- trade notification
@@ -207,6 +212,14 @@ module Deribit
       send(path: '/api/v1/private/cancelall', arguments: params)
     end
 
+    def set_heartbeat(interval = "60")
+      params = {
+        "interval": interval
+      }
+
+      send(path: '/api/v1/public/setheartbeat', arguments: params)
+    end
+
     def handle_notifications(notifications)
       return if notifications.empty?
       notification, *tail = notifications
@@ -241,10 +254,13 @@ module Deribit
         if msg.type == :text
           json = JSON.parse(msg.data, symbolize_names: true)
           p "Subscribed! Response: #{json}" if json[:message] == "subscribed"
-          # if find query send json to handler
 
           if json[:result] == 'pong'
             instance.handler.send(:pong, json)
+          elsif json[:message] == "heartbeat"
+            instance.handler.send(:setheartbeat, json)
+          elsif json[:message] == "public API test"
+            instance.handler.send(:test, json)
           elsif json[:id] and stack_id = instance.ids_stack.find{|i| i[json[:id]]}
             method  = stack_id[json[:id]][0]
             #pass the method to handler
