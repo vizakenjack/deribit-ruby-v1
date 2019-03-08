@@ -179,9 +179,10 @@ module Deribit
       request.send(path: '/api/v1/private/orderstate', params: params)
     end
 
-    def order_history(count = nil)
+    def order_history(count: nil, offset: nil)
       params = {}
       params[:count] = count if count
+      params[:offset] = offset if offset
 
       request.send(path: '/api/v1/private/orderhistory', params: params)
     end
