@@ -26,7 +26,7 @@ module Deribit
 
       json = JSON.parse(response.body, symbolize_names: true)
 
-      raise Error.new(message: "Failed: " + json[:message]) unless json[:success]
+      raise Error.new(message: "Failed for #{credentials.api_key}: " + json[:message]) unless json[:success]
 
       if json.include?(:result)
         json[:result]

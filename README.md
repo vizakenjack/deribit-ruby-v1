@@ -1,6 +1,6 @@
 # Deribit
 
-# API Client for [Deribit API](https://www.deribit.com/docs/api/)
+# API Client for v1 [Deribit API](https://www.deribit.com/docs/api/)
 
 ## Installation
 
