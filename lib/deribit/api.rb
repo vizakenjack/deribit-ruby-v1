@@ -75,7 +75,7 @@ module Deribit
     #  | `max_show`   | `string`   | Optional, optional parameter, if "0" then the order will be hidden                |
     #  | `adv`        | `string`   | Optional, can be "implv", "usd", or absent (advanced order type)                  |
 
-    def buy(instrument, quantity, price, type: "limit", stopPx: nil, execInst: "mark_price", post_only: nil, reduce_only: nil, label: nil, max_show: nil, adv: nil)
+    def buy(instrument, quantity, price, type: "limit", stopPx: nil, execInst: "index_price", post_only: nil, reduce_only: nil, label: nil, max_show: nil, adv: nil)
       params = {
           instrument: instrument,
           quantity:   quantity,
@@ -102,7 +102,7 @@ module Deribit
     #  | `adv`        | `string`   | Optional, can be "implv", "usd", or absent (advanced order type)                  |
     #
 
-    def sell(instrument, quantity, price, type: "limit", stopPx: nil, execInst: "mark_price", post_only: nil, reduce_only: nil, label: nil, max_show: nil, adv: nil)
+    def sell(instrument, quantity, price, type: "limit", stopPx: nil, execInst: "index_price", post_only: nil, reduce_only: nil, label: nil, max_show: nil, adv: nil)
       params = {
           instrument: instrument,
           quantity:   quantity,
