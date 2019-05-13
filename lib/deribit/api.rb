@@ -58,7 +58,11 @@ module Deribit
       request.send(path: '/api/v1/private/getmargins', params: params)
     end
 
-    def account(params={})
+    def account(full: false)
+      params = {
+        ext: full
+      }
+
       request.send(path: '/api/v1/private/account', params: params)
     end
 
