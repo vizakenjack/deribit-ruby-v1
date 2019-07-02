@@ -4,10 +4,9 @@ module Deribit
   class WS
 
     URL = ENV['WS_DOMAIN'] || 'wss://www.deribit.com/ws/api/v1/'
-    AVAILABLE_EVENTS = [:order_book, :trade, :user_order, :trades]
+    AVAILABLE_EVENTS = [:order_book, :trade, :my_trade, :user_order, :index, :portfolio, :announcement]
 
     attr_reader :socket, :response, :ids_stack, :handler, :subscribed_instruments
-    attr_accessor :triggers
 
     def initialize(api_key, api_secret, handler = Handler)
       @credentials = Credentials.new(api_key, api_secret)
@@ -21,7 +20,6 @@ module Deribit
       end
 
       @ids_stack  = []
-      @triggers   = []
 
       #the structure of subscribed_instruments: {'event_name' => ['instrument1', 'instrument2']]}
       @subscribed_instruments = {}
@@ -40,14 +38,6 @@ module Deribit
                                             instruments.uniq
                                           end
       end
-    end
-
-    def set_trigger(trigger)
-      @triggers << trigger
-    end
-
-    def remove_trigger(trigger)
-      @triggers.delete(trigger)
     end
 
     def connect
@@ -223,27 +213,9 @@ module Deribit
     def handle_notifications(notifications)
       return if notifications.empty?
       notification, *tail = notifications
-      if triggers.any?
-        handle_triggers(triggers, notification)
-      else
-        handler.send(notification[:message], notification[:result])
-      end
+      handler.send(notification[:message], notification[:result])
 
       handle_notifications(tail)
-    end
-
-    def handle_triggers(_triggers, notification)
-      return if _triggers.empty?
-      trigger, *tail = _triggers
-
-      notifications = notification[:result].select{|i| i[:instrument] == trigger.instrument}
-
-      if notifications.any?
-        trigger.send(notification[:message], notifications)
-      else
-        handler.send(notification[:message], notification[:result])
-      end
-      handle_triggers(tail, notification)
     end
 
     private
@@ -251,17 +223,13 @@ module Deribit
     def start_handle
       instance = self
       @socket.on :message do |msg|
+        # puts "msg = #{msg.inspect}"
+        
         if msg.type == :text
           json = JSON.parse(msg.data, symbolize_names: true)
           p "Subscribed! Response: #{json}" if json[:message] == "subscribed"
 
-          if json[:result] == 'pong'
-            instance.handler.send(:pong, json)
-          elsif json[:message] == "heartbeat"
-            instance.handler.send(:setheartbeat, json)
-          elsif json[:message] == "public API test"
-            instance.handler.send(:test, json)
-          elsif json[:message] == "test_request"
+          if json[:message] == "test_request"
             # p "Got test request: #{json.inspect}"
             instance.test
           elsif json[:id] and stack_id = instance.ids_stack.find{|i| i[json[:id]]}
@@ -279,7 +247,7 @@ module Deribit
           elsif json[:notifications]
             instance.handle_notifications(json[:notifications])
           else
-            raise "A handle method not found for #{json}!"
+            instance.handler.send(:notice, json)
           end
 
         elsif msg.type == :close
