@@ -9,6 +9,9 @@ module Deribit
     def initialize(key, secret, test: false)
       @key = key
       @secret = secret
+      @token = nil
+      @refresh_token = nil
+      @expires = nil
       @base_uri = test ? TEST_URL : SERVER_URL
     end
 
@@ -23,6 +26,17 @@ module Deribit
       end
     end
 
+    def get_token
+      return @token  if @token
+    
+      params = { grant_type: 'client_credentials', client_id: key, client_secret: secret }
+      result = send 'auth', 'public', params: params
+      
+      @refresh_token = result[:refresh_token]
+      @expires = result[:expires_in]
+      @token = result[:access_token]
+    end
+
     def send(method_name, prefix, params: {})
       uri = URI(base_uri + API_PATH + prefix + '/' + method_name.to_s)
 
@@ -30,18 +44,30 @@ module Deribit
         uri.query = URI.encode_www_form(params)
         response = Net::HTTP.get_response(uri)
       else
-        request = Net::HTTP::Post.new(uri.path)
-        request.body = URI.encode_www_form(params)
-        request.add_field 'x-deribit-sig', generate_signature(uri.path, params)
+        request = Net::HTTP::Post.new(uri.request_uri)
+        # request.body = URI.encode_www_form(params)
+        request.set_form_data(params)
+        request.add_field 'Authorization: Bearer', get_token
 
-        response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-          http.request(request)
-        end
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        http.set_debug_output($stdout)
+        # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+        response = http.request(request)
+
+        # response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+          # http.request(request)
+        # end
       end
+
+      binding.pry()  unless method_name == "auth"
 
       if is_error_response?(response)
         json = JSON.parse(response.body)  rescue nil
-        message = json['error']  if json
+        message = "Failed for #{key}. "
+        message << json['error'].to_s  if json
+
         raise Error.new(code: response.code, message: message)
       else
         process(response)
@@ -51,9 +77,9 @@ module Deribit
     def process(response)
       json = JSON.parse(response.body, symbolize_names: true)
 
-      raise Error.new(message: "Failed for #{key}: " + json[:message])  unless json[:success]
-
-      if json.include?(:result)
+      if json.include?(:error)
+        raise Error.new(message: "Failed for #{key}. " + json[:error])  
+      elsif json.include?(:result)
         json[:result]
       elsif json.include?(:message)
         json[:message]
