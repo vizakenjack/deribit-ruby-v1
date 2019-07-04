@@ -2,26 +2,17 @@ require 'websocket-client-simple'
 
 module Deribit
   class WS
-
-    URL = ENV['WS_DOMAIN'] || 'wss://www.deribit.com/ws/api/v1/'
     AVAILABLE_EVENTS = [:order_book, :trade, :my_trade, :user_order, :index, :portfolio, :announcement]
 
     attr_reader :socket, :response, :ids_stack, :handler, :subscribed_instruments
 
-    def initialize(api_key, api_secret, handler = Handler)
-      @credentials = Credentials.new(api_key, api_secret)
-      @request     = Request.new(@credentials)
-      @socket      = connect
-
-      if handler.instance_of?(Class)
-        @handler   = handler.new
-      else
-        @handler   = handler
-      end
-
+    def initialize(key, secret, handler = Handler, test: false)
+      @request     = Request.new(key, secret, test: test)
+      @socket      = connect(test ? WS_TEST_URL : WS_SERVER_URL)
+      @handler     = handler.instance_of?(Class) ? handler.new : handler
       @ids_stack  = []
 
-      #the structure of subscribed_instruments: {'event_name' => ['instrument1', 'instrument2']]}
+      # the structure of subscribed_instruments: {'event_name' => ['instrument1', 'instrument2']]}
       @subscribed_instruments = {}
 
       start_handle
@@ -40,8 +31,8 @@ module Deribit
       end
     end
 
-    def connect
-      WebSocket::Client::Simple.connect(URL)
+    def connect(url)
+      WebSocket::Client::Simple.connect(url)
     end
 
     def reconnect!

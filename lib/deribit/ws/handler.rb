@@ -2,7 +2,21 @@ module Deribit
   class WS
     
     class Handler
-      AVAILABLE_METHODS = [:account, :getcurrencies, :subscribe, :unsubscribe, :buy, :sell, :trade, :my_trade_event, :order_book_event, :user_order_event, :announcements, :index, :heartbeat, :pong]
+      AVAILABLE_METHODS = [
+        :account, 
+        :getcurrencies, 
+        :subscribe, 
+        :unsubscribe, 
+        :buy, :sell, 
+        :trade, 
+        :my_trade_event, 
+        :order_book_event, 
+        :user_order_event, 
+        :announcements, 
+        :index, 
+        :heartbeat, 
+        :pong
+      ]
       SILENT = [:setheartbeat, :heartbeat, :"public API test"]
 
       def method_missing(m, json, &block)

@@ -1,32 +1,43 @@
 require 'base64'
-require 'httparty'
+require 'net/http'
 
 module Deribit
   class Request
-    include HTTParty
-    # debug_output $stdout
+    attr_accessor :key, :secret, :base_uri
 
-    base_uri ENV['DOMAIN'] || 'https://www.deribit.com/'
-
-    attr_accessor :credentials
-
-    def initialize(credentials)
-      @credentials = credentials
+    def initialize(key, secret, test: false)
+      @key = key
+      @secret = secret
+      @base_uri = test ? URI(TEST_URL) : URI(SERVER_URL)
     end
 
-    def send(path: '/api/v1/public/test', params: {})
-			if path.start_with?('/api/v1/private/')
-				headers = {"x-deribit-sig" => generate_signature(path, params)}
-				response = self.class.post(path, body: params, headers: headers)
-			else
-				response = self.class.get(path, query: params)
-			end
+    def send(path: DEFAULT_REQUEST_PATH, params: {})
+      uri = base_uri + path
 
-      raise Error.new(code: response.code) if Error.is_error_response?(response: response)
+			if path.start_with?(PRIVATE_PATH)
+        request = Net::HTTP::Post.new(uri.path)
+        request.body = URI.encode_www_form(params)
+        request.add_field 'x-deribit-sig', generate_signature(path, params)
 
+        response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+          http.request(request)
+        end
+      else
+        uri.query = URI.encode_www_form(params)
+        response = Net::HTTP.get_response(uri)
+      end
+
+      if is_error_response?(response)
+        raise Error.new(code: response.code)
+      else
+        process(response)
+      end
+    end
+
+    def process(response)
       json = JSON.parse(response.body, symbolize_names: true)
 
-      raise Error.new(message: "Failed for #{credentials.api_key}: " + json[:message]) unless json[:success]
+      raise Error.new(message: "Failed for #{key}: " + json[:message])  unless json[:success]
 
       if json.include?(:result)
         json[:result]
@@ -37,13 +48,13 @@ module Deribit
       end
     end
 
-    def generate_signature(path, params={})
+    def generate_signature(path, params = {})
       timestamp = Time.now.utc.to_i + 1000
 
       signature_data = {
         _:       timestamp,
-        _ackey:  credentials.api_key,
-        _acsec:  credentials.api_secret,
+        _ackey:  key,
+        _acsec:  secret,
         _action: path
        }
 
@@ -68,8 +79,12 @@ module Deribit
 
       base64_signature = Base64.encode64(sha256_signature).encode('utf-8')
 
-      [credentials.api_key, timestamp, base64_signature].join('.')
+      [key, timestamp, base64_signature].join('.').strip
     end
 
+    def is_error_response?(response)
+      code = response.code.to_i
+      code == 0 || code >= 400
+    end
   end
 end

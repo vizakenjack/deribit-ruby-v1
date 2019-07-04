@@ -1,7 +1,7 @@
 RSpec.describe Deribit::API do
   let(:key){"BxxwbXRLmYid"}
   let(:secret){"AAFKHJXE5GC6QI4IUI2AIOXQVH3YI3HO"}
-  let!(:api){Deribit::API.new(key, secret)}
+  let!(:api){Deribit::API.new(key, secret, test: true)}
 
 
   it "#account" do
@@ -112,7 +112,7 @@ RSpec.describe Deribit::API do
 
   it "#order_history with count" do
     VCR.use_cassette 'request/orderhistory_count' do
-      result = api.order_history(20)
+      result = api.order_history(count: 20)
       expect(result.first).to include(:instrument)
     end
   end
