@@ -5,7 +5,8 @@ module Deribit
   class Request
     attr_accessor :key, :secret, :base_uri
 
-    def initialize(key, secret, test_server: false)
+    def initialize(key, secret, test_server: nil)
+      test_server = ENV['DERIBIT_TEST_SERVER']  if test_server == nil
       @key = key
       @secret = secret
       @base_uri = test_server ? URI(TEST_URL) : URI(SERVER_URL)

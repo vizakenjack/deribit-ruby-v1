@@ -6,6 +6,7 @@ module Deribit
         :account, 
         :getcurrencies, 
         :subscribe, 
+        :subscribed, 
         :unsubscribe, 
         :buy,
         :sell, 
@@ -15,26 +16,25 @@ module Deribit
         :user_order_event, 
         :announcements, 
         :index, 
-        :heartbeat, 
+        :heartbeat,
+        :order,
         :pong
       ]
-      SILENT = [:setheartbeat, :heartbeat, :"public API test"]
+      SILENT = [:setheartbeat, :subscribed, :heartbeat, :"public API test"]
 
       def method_missing(m, *json, &block)
         return false  if SILENT.include?(m.to_sym)
         
         puts "Delegating #{m}"
         if AVAILABLE_METHODS.include?(m.to_sym)
-          notice(json)
+          if json.is_a?(Array)
+            json.each { |j| notice(j) }
+          else
+            notice(json)
+          end
         else
           super
         end
-      end
-
-      def getinstruments(json)
-        response = json
-        response = json[:result].select {|i| i[:isActive] == true} if json[:result]
-        notice(response)
       end
 
       def notice(json)

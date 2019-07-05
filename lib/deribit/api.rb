@@ -2,7 +2,7 @@ module Deribit
   class API
     attr_reader :request
 
-    def initialize(key, secret, test_server: false)
+    def initialize(key, secret, test_server: nil)
       @request = Request.new(key, secret, test_server: test_server)
     end
 
@@ -46,11 +46,10 @@ module Deribit
       request.send(path: '/api/v1/public/getsummary', params: params)
     end
 
-    def margins(instrument, quantity: 1, price: 0.01, amount: nil)
+    def margins(instrument, quantity: 1, price: 0.01)
       params = {
           instrument: instrument,
           quantity:   quantity,
-          amount:     amount,
           price:      price
       }
 

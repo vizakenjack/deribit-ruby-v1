@@ -6,7 +6,8 @@ module Deribit
 
     attr_reader :socket, :response, :ids_stack, :handler, :subscribed_instruments
 
-    def initialize(key, secret, handler = Handler, test_server: false)
+    def initialize(key, secret, handler: Handler, test_server: nil)
+      test_server  = ENV["DERIBIT_TEST_SERVER"]  if test_server == nil
       @request     = Request.new(key, secret, test_server: test_server)
       @socket      = connect(test_server ? WS_TEST_URL : WS_SERVER_URL)
       @handler     = handler.instance_of?(Class) ? handler.new : handler
@@ -32,6 +33,7 @@ module Deribit
     end
 
     def connect(url)
+      puts "Connecting to #{url}"
       WebSocket::Client::Simple.connect(url)
     end
 
@@ -74,14 +76,14 @@ module Deribit
     # subscribed user are reported with trade direction "buy"/"sell" from the
     # subscribed user point of view ("I sell ...", "I buy ..."), see below.
     # Note, for "index" - events are ignored and can be []
-    def subscribe(instruments=['BTC-PERPETUAL'] , events: ["user_order"])
+    def subscribe(instruments = ['BTC-PERPETUAL'] , events: ["user_order"], arguments: {})
       instruments = [instruments]  unless instruments.is_a?(Array)
       events = [events]  unless events.is_a?(Array)
 
       raise "Events must include only #{AVAILABLE_EVENTS.join(", ")} actions" if events.map{|e| AVAILABLE_EVENTS.include?(e.to_sym)}.index(false) or events.empty?
       raise "instruments are required" if instruments.empty?
 
-      arguments = {instrument: instruments, event: events}
+      arguments = arguments.merge(instrument: instruments, event: events)
       send(path: '/api/v1/private/subscribe', arguments: arguments)
     end
 
@@ -215,35 +217,38 @@ module Deribit
       instance = self
       @socket.on :message do |msg|
         # puts "msg = #{msg.inspect}"
-        
-        if msg.type == :text
-          json = JSON.parse(msg.data, symbolize_names: true)
-          p "Subscribed! Response: #{json}" if json[:message] == "subscribed"
+        begin
+          if msg.type == :text
+            json = JSON.parse(msg.data, symbolize_names: true)
+            p "Subscribed! Response: #{json}" if json[:message] == "subscribed"
 
-          if json[:message] == "test_request"
-            # p "Got test request: #{json.inspect}"
-            instance.test
-          elsif json[:id] and stack_id = instance.ids_stack.find{|i| i[json[:id]]}
-            method  = stack_id[json[:id]][0]
-            #pass the method to handler
-            params = instance.ids_stack.delete(stack_id)
+            if json[:message] == "test_request"
+              # p "Got test request: #{json.inspect}"
+              instance.test
+            elsif json[:id] and stack_id = instance.ids_stack.find{|i| i[json[:id]]}
+              method  = stack_id[json[:id]][0]
+              #pass the method to handler
+              params = instance.ids_stack.delete(stack_id)
 
-            #save subscribed_instruments for resubscribe in unsubscribe action
-            if method == 'subscribe'
-              params = params[json[:id]][1][:arguments]
-              instance.add_subscribed_instruments(instruments: params[:instrument], events: params[:event])
+              #save subscribed_instruments for resubscribe in unsubscribe action
+              if method == 'subscribe'
+                params = params[json[:id]][1][:arguments]
+                instance.add_subscribed_instruments(instruments: params[:instrument], events: params[:event])
+              end
+
+              instance.handler.send(method, json)
+            elsif json[:notifications]
+              instance.handle_notifications(json[:notifications])
+            else
+              instance.handler.send(:notice, json)
             end
 
-            instance.handler.send(method, json)
-          elsif json[:notifications]
-            instance.handle_notifications(json[:notifications])
-          else
-            instance.handler.send(:notice, json)
+          elsif msg.type == :close
+            p "trying to reconnect = got close event, msg: #{msg.inspect}"
+            instance.reconnect!
           end
-
-        elsif msg.type == :close
-          p "trying to reconnect = got close event, msg: #{msg.inspect}"
-          instance.reconnect!
+        rescue StandardError => e 
+          puts "Error on message: #{msg.inspect}: #{e.full_message}"
         end
       end
 
