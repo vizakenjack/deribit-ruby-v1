@@ -2,8 +2,8 @@ module Deribit
   class API
     attr_reader :request
 
-    def initialize(key, secret, test: false)
-      @request = Request.new(key, secret, test: test)
+    def initialize(key, secret, test_server: false)
+      @request = Request.new(key, secret, test_server: test_server)
     end
 
     def orderbook(instrument)

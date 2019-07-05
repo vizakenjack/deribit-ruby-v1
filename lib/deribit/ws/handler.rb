@@ -7,7 +7,8 @@ module Deribit
         :getcurrencies, 
         :subscribe, 
         :unsubscribe, 
-        :buy, :sell, 
+        :buy,
+        :sell, 
         :trade, 
         :my_trade_event, 
         :order_book_event, 
@@ -19,7 +20,7 @@ module Deribit
       ]
       SILENT = [:setheartbeat, :heartbeat, :"public API test"]
 
-      def method_missing(m, json, &block)
+      def method_missing(m, *json, &block)
         return false  if SILENT.include?(m.to_sym)
         
         puts "Delegating #{m}"

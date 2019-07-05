@@ -6,9 +6,9 @@ module Deribit
 
     attr_reader :socket, :response, :ids_stack, :handler, :subscribed_instruments
 
-    def initialize(key, secret, handler = Handler, test: false)
-      @request     = Request.new(key, secret, test: test)
-      @socket      = connect(test ? WS_TEST_URL : WS_SERVER_URL)
+    def initialize(key, secret, handler = Handler, test_server: false)
+      @request     = Request.new(key, secret, test_server: test_server)
+      @socket      = connect(test_server ? WS_TEST_URL : WS_SERVER_URL)
       @handler     = handler.instance_of?(Class) ? handler.new : handler
       @ids_stack  = []
 

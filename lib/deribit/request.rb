@@ -5,10 +5,10 @@ module Deribit
   class Request
     attr_accessor :key, :secret, :base_uri
 
-    def initialize(key, secret, test: false)
+    def initialize(key, secret, test_server: false)
       @key = key
       @secret = secret
-      @base_uri = test ? URI(TEST_URL) : URI(SERVER_URL)
+      @base_uri = test_server ? URI(TEST_URL) : URI(SERVER_URL)
     end
 
     def send(path: DEFAULT_REQUEST_PATH, params: {})
