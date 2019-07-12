@@ -1,6 +1,7 @@
 require 'base64'
 require 'net/http'
 require 'uri'
+require 'httparty'
 
 module Deribit
   class API
@@ -29,8 +30,9 @@ module Deribit
     def get_token
       return @token  if @token
     
-      params = { grant_type: 'client_credentials', client_id: key, client_secret: secret }
+      params = { grant_type: 'client_credentials', client_id: key, client_secret: secret, scope: "session:test" }
       result = send 'auth', 'public', params: params
+      puts "Auth result: #{result.inspect}"
       
       @refresh_token = result[:refresh_token]
       @expires = result[:expires_in]
@@ -47,7 +49,7 @@ module Deribit
         request = Net::HTTP::Post.new(uri.request_uri)
         # request.body = URI.encode_www_form(params)
         request.set_form_data(params)
-        request.add_field 'Authorization: Bearer', get_token
+        request.add_field 'Authorization', "Bearer #{get_token}"
 
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
