@@ -224,7 +224,7 @@ module Deribit
 
             if json[:message] == "test_request"
               # p "Got test request: #{json.inspect}"
-              instance.test
+              instance.ping
             elsif json[:id] and stack_id = instance.ids_stack.find{|i| i[json[:id]]}
               method  = stack_id[json[:id]][0]
               #pass the method to handler
