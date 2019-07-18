@@ -181,15 +181,16 @@ module Deribit
       request.send(path: '/api/v1/private/orderstate', params: params)
     end
 
-    def order_history(count: nil, offset: nil)
+    def order_history(instrument: nil, count: nil, offset: nil)
       params = {}
+      params[:instrument] = instrument if instrument
       params[:count] = count if count
       params[:offset] = offset if offset
 
       request.send(path: '/api/v1/private/orderhistory', params: params)
     end
 
-    def trade_history(count: nil, instrument: nil, start_trade_id: nil)
+    def trade_history(instrument: nil, count: nil, start_trade_id: nil)
       params = {}
 
       %i(count instrument).each do |var|
