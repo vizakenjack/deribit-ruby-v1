@@ -29,7 +29,7 @@ require 'deribit'
 api = Deribit::API.new("KEY", "SECRET")
 
 api.index
-api.account
+api.account_info
 ```
 
 ENV['DOMAIN'] is changing the default domain https://deribit.com/

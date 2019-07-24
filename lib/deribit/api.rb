@@ -132,7 +132,6 @@ module Deribit
       params = {
         orderId:    order_id,
         quantity:   quantity,
-        stopPx:     stopPx,
         price:      price
       }
 

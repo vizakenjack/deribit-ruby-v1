@@ -11,9 +11,10 @@ module Deribit
         :buy,
         :sell, 
         :trade, 
-        :my_trade_event, 
+        :trade_event, 
         :order_book_event, 
         :user_order_event, 
+        :user_orders_event, 
         :announcements, 
         :index, 
         :heartbeat,
@@ -27,18 +28,14 @@ module Deribit
         
         puts "Delegating #{m}"
         if AVAILABLE_METHODS.include?(m.to_sym)
-          if json.is_a?(Array)
-            json.each { |j| notice(j) }
-          else
-            notice(json)
-          end
+          notice(json)
         else
           super
         end
       end
 
       def notice(json)
-        puts "Notice: #{json.inspect}"  unless SILENT.include?(json[:message].to_sym)
+        puts "Notice: #{json.inspect}"  if !json[:message] || SILENT.include?(json[:message].to_sym)
       end
     end
 
