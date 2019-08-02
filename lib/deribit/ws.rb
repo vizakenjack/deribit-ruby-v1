@@ -220,11 +220,11 @@ module Deribit
         begin
           if msg.type == :text
             json = JSON.parse(msg.data, symbolize_names: true)
-            p "Subscribed! Response: #{json}" if json[:message] == "subscribed"
+            puts "Subscribed!" if json[:message] == "subscribed"
 
             if json[:message] == "test_request"
-              # p "Got test request: #{json.inspect}"
-              instance.ping
+              # puts "Got test request: #{json.inspect}" # DEBUG
+              instance.test
             elsif json[:id] and stack_id = instance.ids_stack.find{|i| i[json[:id]]}
               method  = stack_id[json[:id]][0]
               #pass the method to handler
@@ -243,17 +243,18 @@ module Deribit
               instance.handler.send(:notice, json)
             end
 
+            instance.handler.timestamp = Time.now.to_i
           elsif msg.type == :close
-            p "trying to reconnect = got close event, msg: #{msg.inspect}"
+            puts "trying to reconnect = got close event, msg: #{msg.inspect}"
             instance.reconnect!
           end
         rescue StandardError => e 
-          puts "Error on message: #{msg.inspect}: #{e.full_message}"
+          instance.handler.handle_error(json, e)
         end
       end
 
       @socket.on :error do |e|
-        p e
+        puts e
       end
     end
 

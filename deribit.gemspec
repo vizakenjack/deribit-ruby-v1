@@ -7,9 +7,10 @@ Gem::Specification.new do |spec|
   spec.version       = Deribit::VERSION
   spec.authors       = ["Alexander Dmitriev", "Ivan Tumanov"]
   spec.email         = ["alexanderdmv@gmail.com"]
+  spec.licenses      = ['MIT']
 
-  spec.summary       = %q{Deribit.com API v2 ruby adapter}
-  spec.description   = %q{Deribit.com API v2 ruby adapter}
+  spec.summary       = %q{Deribit.com v1 API ruby adapter}
+  spec.description   = %q{This gem allows you to use deribit.com exchange}
   spec.homepage      = "https://github.com/vizakenjack/deribit-ruby"
 
   spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do

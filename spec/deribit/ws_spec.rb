@@ -8,12 +8,12 @@ RSpec.describe Deribit::WS do
     let(:handler) { TestHandler }
 
     it "when handler is a class" do
-      ws = Deribit::WS.new(key, secret, handler, test: true)
+      ws = Deribit::WS.new(key, secret, handler: handler, test: true)
       expect(ws.handler.instance_of?(Class)).to be_falsy
     end
 
     it "when handler is an instance" do
-      ws = Deribit::WS.new(key, secret, handler.new, test: true)
+      ws = Deribit::WS.new(key, secret, handler: handler.new, test: true)
       expect(ws.handler.instance_of?(TestHandler)).to be_truthy
     end
 

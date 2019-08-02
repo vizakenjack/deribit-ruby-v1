@@ -2,6 +2,8 @@ module Deribit
   class WS
     
     class Handler
+      attr_accessor :timestamp
+      
       AVAILABLE_METHODS = [
         :account, 
         :getcurrencies, 
@@ -23,6 +25,10 @@ module Deribit
       ]
       SILENT = [:setheartbeat, :subscribed, :heartbeat, :"public API test"]
 
+      def initialize
+        @timestamp = Time.now.to_i
+      end
+
       def method_missing(m, *json, &block)
         return false  if SILENT.include?(m.to_sym)
         
@@ -35,7 +41,14 @@ module Deribit
       end
 
       def notice(json)
-        puts "Notice: #{json.inspect}"  if !json[:message] || SILENT.include?(json[:message].to_sym)
+        return json.each { |e| notice(e) }  if json.is_a?(Array)
+
+        msg = json.is_a?(String) ? json : json[:message]
+        puts "Notice: #{msg}"  if msg && !SILENT.include?(msg.to_sym)
+      end
+
+      def handle_error(json, error)
+        puts "Alert! #{error.class} on message: '#{json.try(:fetch, :message)}', #{json.inspect}. Message: #{error.full_message}"
       end
     end
 
