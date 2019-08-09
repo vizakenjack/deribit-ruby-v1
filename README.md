@@ -54,7 +54,7 @@ Constructor creates new API client.
 
 ### Methods
 
-* `getinstruments(expired: false, only_active: true)` - [Doc](https://www.deribit.com/docs/api/#getinstruments), public
+* `instruments(expired: false, only_active: true)` - [Doc](https://www.deribit.com/docs/api/#getinstruments), public
 
   Returns active instruments
   **Parameters**
@@ -64,7 +64,7 @@ Constructor creates new API client.
   | `expired`    | `boolean`  | Optional, for returning all expired instruments.           |
   | `only_active`| `boolean`  | Optional, returns only isActive true instruments           |
 
-* `getorderbook(instrument)` - [Doc](https://www.deribit.com/docs/api/#getinstruments), public
+* `orderbook(instrument)` - [Doc](https://www.deribit.com/docs/api/#getinstruments), public
 
   Retrieve the orderbook for a given instrument.
 
@@ -75,11 +75,11 @@ Constructor creates new API client.
   | `instrument` | `string`   | Required, instrument name                                  |
 
 
-* `index()` - [Doc](https://www.deribit.com/docs/api/#index), public
+* `index` - [Doc](https://www.deribit.com/docs/api/#index), public
 
   Get price index, BTC-USD rates.
 
-* `getcurrencies()` - [Doc](https://www.deribit.com/docs/api/#getcurrencies), public
+* `getcurrencies` - [Doc](https://www.deribit.com/docs/api/#getcurrencies), public
 
   Get all supported currencies.
 
@@ -171,7 +171,7 @@ Constructor creates new API client.
   |--------------|------------|-----------------------------------------------------------------------------------|
   | `order_id`    | `integer`  | Required, ID of the order returned by "sell" or "buy" request
 
-* `getopenorders(instrument)` - [Doc](https://www.deribit.com/docs/api/#getopenorders), private
+* `open_orders(instrument)` - [Doc](https://www.deribit.com/docs/api/#getopenorders), private
 
   Retrieve open orders.
 
@@ -181,19 +181,10 @@ Constructor creates new API client.
   |--------------|------------|-----------------------------------------------------------------------|
   | `instrument` | `string`   | Optional, instrument name, use if want orders for specific instrument |
 
-* `positions()` - [Doc](https://www.deribit.com/docs/api/#positions), private
+* `positions` - [Doc](https://www.deribit.com/docs/api/#positions), private
 
   Retreive positions.
 
-* `orderhistory(count)` - [Doc](https://www.deribit.com/docs/api/#orderhistory), private
-
-  Get history.
-
-  **Parameters**
-
-  | Name       | Type       | Description                                                |
-  |------------|------------|------------------------------------------------------------|
-  | `count`    | `integer`  | Optional, number of requested records                      |
 
 * `tradehistory(count: count, instrument: instrument, start_trade_id: start_trade_id)` - [Doc](https://www.deribit.com/docs/api/#tradehistory), private
 
@@ -236,7 +227,7 @@ class MyHandler < Deribit::WS::Handler
   end
 
   #action handler
-  def getinstruments(json)
+  def instruments(json)
     #you actions here
   end
 end

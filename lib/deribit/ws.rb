@@ -243,7 +243,7 @@ module Deribit
               instance.handler.send(:notice, json)
             end
 
-            instance.handler.timestamp = Time.now.to_i
+            instance.handler.update_timestamp!
           elsif msg.type == :close
             puts "trying to reconnect = got close event, msg: #{msg.inspect}"
             instance.reconnect!

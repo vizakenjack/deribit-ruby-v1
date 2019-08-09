@@ -1,8 +1,7 @@
 module Deribit
   class WS
-    
     class Handler
-      attr_accessor :timestamp
+      attr_reader :timestamp
       
       AVAILABLE_METHODS = [
         :account, 
@@ -25,10 +24,6 @@ module Deribit
       ]
       SILENT = [:setheartbeat, :subscribed, :heartbeat, :"public API test"]
 
-      def initialize
-        @timestamp = Time.now.to_i
-      end
-
       def method_missing(m, *json, &block)
         return false  if SILENT.include?(m.to_sym)
         
@@ -49,6 +44,10 @@ module Deribit
 
       def handle_error(json, error)
         puts "Alert! #{error.class} on message: '#{json.try(:fetch, :message)}', #{json.inspect}. Message: #{error.full_message}"
+      end
+
+      def update_timestamp!
+        @timestamp = Time.now.to_i
       end
     end
 
