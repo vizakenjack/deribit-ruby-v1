@@ -3,13 +3,12 @@ require 'websocket-client-simple'
 module Deribit
   class WS
     AVAILABLE_EVENTS = [:order_book, :trade, :my_trade, :user_order, :index, :portfolio, :announcement]
-
-    attr_reader :socket, :response, :ids_stack, :handler, :subscribed_instruments
+    attr_reader :socket, :response, :ids_stack, :handler, :subscribed_instruments, :test_server
 
     def initialize(key, secret, handler: Handler, test_server: nil)
-      test_server  = ENV["DERIBIT_TEST_SERVER"]  if test_server == nil
+      @test_server = test_server || ENV["DERIBIT_TEST_SERVER"]
       @request     = Request.new(key, secret, test_server: test_server)
-      @socket      = connect(test_server ? WS_TEST_URL : WS_SERVER_URL)
+      @socket      = connect
       @handler     = handler.instance_of?(Class) ? handler.new : handler
       @ids_stack  = []
 
@@ -32,7 +31,8 @@ module Deribit
       end
     end
 
-    def connect(url)
+    def connect
+      url = test_server ? WS_TEST_URL : WS_SERVER_URL
       puts "Connecting to #{url}"
       WebSocket::Client::Simple.connect(url)
     end
@@ -197,7 +197,7 @@ module Deribit
 
     def set_heartbeat(interval = "60")
       params = {
-        "interval": interval
+        "interval": interval.to_s
       }
 
       send(path: '/api/v1/public/setheartbeat', arguments: params)
@@ -221,6 +221,7 @@ module Deribit
           if msg.type == :text
             json = JSON.parse(msg.data, symbolize_names: true)
             puts "Subscribed!" if json[:message] == "subscribed"
+            # puts "Got json: #{json}"
 
             if json[:message] == "test_request"
               # puts "Got test request: #{json.inspect}" # DEBUG
@@ -243,6 +244,7 @@ module Deribit
               instance.handler.send(:notice, json)
             end
 
+            # puts "Want to update timestamp for handler for event: #{json.inspect}"
             instance.handler.update_timestamp!
           elsif msg.type == :close
             puts "trying to reconnect = got close event, msg: #{msg.inspect}"
