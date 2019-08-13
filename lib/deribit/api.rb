@@ -2,7 +2,7 @@ module Deribit
   class API
     attr_reader :request
 
-    def initialize(key, secret, test_server: nil)
+    def initialize(key = nil, secret = nil, test_server: nil)
       @request = Request.new(key, secret, test_server: test_server)
     end
 
