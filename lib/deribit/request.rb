@@ -1,5 +1,6 @@
 require 'base64'
 require 'net/http'
+require 'json'
 
 module Deribit
   class Request
