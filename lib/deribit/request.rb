@@ -1,25 +1,24 @@
-require 'base64'
-require 'net/http'
-require 'json'
+require "base64"
+require "net/http"
+require "json"
 
 module Deribit
   class Request
     attr_accessor :key, :secret, :base_uri
 
-    def initialize(key, secret, test_server: nil)
-      test_server = ENV['DERIBIT_TEST_SERVER']  if test_server == nil
+    def initialize(key, secret, test_server: false)
       @key = key
       @secret = secret
-      @base_uri = test_server ? URI(TEST_URL) : URI(SERVER_URL)
+      @base_uri = (ENV["DERIBIT_SERVER"] == "test" || test_server) ? URI(TEST_URL) : URI(SERVER_URL)
     end
 
     def send(path: DEFAULT_REQUEST_PATH, params: {})
       uri = base_uri + path
 
-			if path.start_with?(PRIVATE_PATH)
+      if path.start_with?(PRIVATE_PATH)
         request = Net::HTTP::Post.new(uri.path)
         request.body = URI.encode_www_form(params)
-        request.add_field 'x-deribit-sig', generate_signature(path, params)
+        request.add_field "x-deribit-sig", generate_signature(path, params)
 
         response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
           http.request(request)
@@ -39,7 +38,7 @@ module Deribit
     def process(response)
       json = JSON.parse(response.body, symbolize_names: true)
 
-      raise Error.new(message: "Failed for #{key}: " + json[:message])  unless json[:success]
+      raise Error.new(message: "Failed for #{key}: " + json[:message]) unless json[:success]
 
       if json.include?(:result)
         json[:result]
@@ -54,34 +53,34 @@ module Deribit
       timestamp = Time.now.utc.to_i + 1000
 
       signature_data = {
-        _:       timestamp,
-        _ackey:  key,
-        _acsec:  secret,
-        _action: path
-       }
+        _: timestamp,
+        _ackey: key,
+        _acsec: secret,
+        _action: path,
+      }
 
       signature_data.update(params)
       sorted_signature_data = signature_data.sort
 
-      converter = ->(data){
+      converter = ->(data) {
         key = data[0]
         value = data[1]
         if value.is_a?(Array)
-          [key.to_s, value.join].join('=')
+          [key.to_s, value.join].join("=")
         else
-          [key.to_s, value.to_s].join('=')
+          [key.to_s, value.to_s].join("=")
         end
       }
 
       items = sorted_signature_data.map(&converter)
-      signature_string = items.join('&')
+      signature_string = items.join("&")
 
       sha256 = OpenSSL::Digest::SHA256.new
-      sha256_signature = sha256.digest(signature_string.encode('utf-8'))
+      sha256_signature = sha256.digest(signature_string.encode("utf-8"))
 
-      base64_signature = Base64.encode64(sha256_signature).encode('utf-8')
+      base64_signature = Base64.encode64(sha256_signature).encode("utf-8")
 
-      [key, timestamp, base64_signature].join('.').strip
+      [key, timestamp, base64_signature].join(".").strip
     end
 
     def is_error_response?(response)

@@ -26,16 +26,13 @@ Or install it yourself as:
 ```
 require 'deribit'
 
+# main server
 api = Deribit::API.new("KEY", "SECRET")
+# test server
+api = Deribit::API.new("KEY", "SECRET", test_server: true)
 
 api.index
 api.account_info
-```
-
-ENV['DOMAIN'] is changing the default domain https://deribit.com/
-
-```
-DOMAIN=https://test.deribit.com/ bin/console
 ```
 
 ## API
@@ -79,11 +76,11 @@ Constructor creates new API client.
 
   Get price index, BTC-USD rates.
 
-* `getcurrencies` - [Doc](https://www.deribit.com/docs/api/#getcurrencies), public
+* `currencies` - [Doc](https://www.deribit.com/docs/api/#getcurrencies), public
 
   Get all supported currencies.
 
-* `getlasttrades(instrument, count: count, since: since)` - [Doc](https://www.deribit.com/docs/api/#getlasttrades), public
+* `last_trades(instrument, count: count, since: since)` - [Doc](https://www.deribit.com/docs/api/#getlasttrades), public
 
   Retrieve the latest trades that have occured for a specific instrument.
 
@@ -96,7 +93,7 @@ Constructor creates new API client.
   | `since`      | `integer`  | Optional, “since” trade id, the server returns trades newer than that “since” |
 
 
-* `getsummary(instrument)` - [Doc](https://www.deribit.com/docs/api/#getsummary), public
+* `summary(instrument)` - [Doc](https://www.deribit.com/docs/api/#getsummary), public
 
   Retrieve the summary info such as Open Interest, 24H Volume etc for a specific instrument.
 
@@ -107,7 +104,7 @@ Constructor creates new API client.
   | `instrument` | `string`   | Required, instrument name                                  |
 
 
-* `account()` - [Doc](https://www.deribit.com/docs/api/#account), Private
+* `account` - [Doc](https://www.deribit.com/docs/api/#account), Private
 
   Get user account summary.
 
@@ -186,7 +183,7 @@ Constructor creates new API client.
   Retreive positions.
 
 
-* `tradehistory(count: count, instrument: instrument, start_trade_id: start_trade_id)` - [Doc](https://www.deribit.com/docs/api/#tradehistory), private
+* `trade_history(count: count, instrument: instrument, start_trade_id: start_trade_id)` - [Doc](https://www.deribit.com/docs/api/#tradehistory), private
 
   Get private trade history of the account. (Authorization is required). The result is ordered by trade identifiers (trade id-s).
 
@@ -218,23 +215,22 @@ Create inheritance class for handling WS notifications
 
 ```
 class MyHandler < Deribit::WS::Handler
-  #event handler
+  # event handler
   def order_book_event(json)
-    #you actions here
+    # your actions here
 
-    #json example for order_book_event
-    #{"state"=>"open", "settlementPrice"=>0.2105, "instrument"=>"BTC-30NOV18-6500-P", "bids"=>[{"quantity"=>10.0, "amount"=>10.0, "price"=>0.2785, "cm"=>10.0, "cm_amount"=>10.0}, {"quantity"=>1.0, "amount"=>1.0, "price"=>0.05, "cm"=>11.0, "cm_amount"=>11.0}], "asks"=>[{"quantity"=>9.0, "amount"=>9.0, "price"=>0.2935, "cm"=>9.0, "cm_amount"=>9.0}], "tstamp"=>1542650516519, "last"=>0.285, "low"=>0.285, "high"=>0.285, "mark"=>0.286, "uPx"=>5060.54, "uIx"=>"index_price", "iR"=>0, "markIv"=>106.0, "askIv"=>110.45, "bidIv"=>0.0, "delta"=>-0.90264, "gamma"=>0.00019, "vega"=>1.48288, "theta"=>-7.42706}
+    # json example for order_book_event
+    # {"state"=>"open", "settlementPrice"=>0.2105, "instrument"=>"BTC-30NOV18-6500-P", "bids"=>[{"quantity"=>10.0, "amount"=>10.0, "price"=>0.2785, "cm"=>10.0, "cm_amount"=>10.0}, {"quantity"=>1.0, "amount"=>1.0, "price"=>0.05, "cm"=>11.0, "cm_amount"=>11.0}], "asks"=>[{"quantity"=>9.0, "amount"=>9.0, "price"=>0.2935, "cm"=>9.0, "cm_amount"=>9.0}], "tstamp"=>1542650516519, "last"=>0.285, "low"=>0.285, "high"=>0.285, "mark"=>0.286, "uPx"=>5060.54, "uIx"=>"index_price", "iR"=>0, "markIv"=>106.0, "askIv"=>110.45, "bidIv"=>0.0, "delta"=>-0.90264, "gamma"=>0.00019, "vega"=>1.48288, "theta"=>-7.42706}
   end
 
-  #action handler
+  # action handler
   def instruments(json)
-    #you actions here
+    # your actions here
   end
 end
 ```
 
 Available events you can check in the guide https://deribit.com/main#/pages/docs/api WebSockets API section.
-
 
 
 ## Development
@@ -245,8 +241,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/sunchess/deribit. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## Code of Conduct
-
-Everyone interacting in the Deribit project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/deribit/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/vizakenjack/deribit. This project is intended to be a safe, welcoming space for collaboration. 
