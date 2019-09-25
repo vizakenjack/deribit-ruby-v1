@@ -1,10 +1,12 @@
 module Deribit
   class Error < StandardError
-    attr_reader :code, :msg
+    attr_reader :code, :msg, :key
 
-    def initialize(code: nil, json: {}, message: nil)
+    def initialize(code: nil, key: nil, json: {}, message: nil)
       @code = code || json[:code]
       @msg = message || json[:msg]
+      @key = key
+      @msg = "Failed for #{key}: #{@msg}" if @key
     end
 
     def inspect

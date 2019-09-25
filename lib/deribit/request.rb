@@ -38,7 +38,7 @@ module Deribit
     def process(response)
       json = JSON.parse(response.body, symbolize_names: true)
 
-      raise Error.new(message: "Failed for #{key}: " + json[:message]) unless json[:success]
+      raise Error.new(key: key, message: json[:message]) unless json[:success]
 
       if json.include?(:result)
         json[:result]
