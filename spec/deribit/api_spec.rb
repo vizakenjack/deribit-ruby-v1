@@ -84,7 +84,7 @@ RSpec.describe Deribit::API do
     VCR.use_cassette "request/cancel" do
       result = api.cancel("1779991913")
       expect(result).to include(:order)
-      expect(result[:order][:state]).to eq("cancelled")
+      expect(result[:order][:order_state]).to eq("cancelled")
     end
   end
 
