@@ -29,6 +29,7 @@ module Deribit
       end
 
       if is_error_response?(response)
+        puts "Response error: #{response.inspect}" if ENV["DERIBIT_DEBUG"]
         raise Error.new(code: response.code)
       else
         process(response)
